@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="hibernate_pojo.Sinhvien_POJO" table="sinhvien" schema="db_quanlydkhp">
+        <id name="idSinhVien">
+            <column name="idSinhVien" sql-type="varchar(8)" length="8"/>
+        </id>
+        <property name="hoVaTen">
+            <column name="hoVaTen" sql-type="varchar(45)" length="45" not-null="true"/>
+        </property>
+        <property name="diem">
+            <column name="diem" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>
