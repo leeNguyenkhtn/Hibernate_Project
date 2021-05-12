@@ -9,14 +9,14 @@
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="show_sql">true</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
-    <mapping resource="Sinhvien_Mapping.hbm.xml"/>
-    <mapping resource="Hocki_Mapping.hbm.xml"/>
-    <mapping resource="Lopdangkihocphan_Mapping.hbm.xml"/>
-    <mapping resource="Lophoc_Mapping.hbm.xml"/>
-    <mapping resource="Monhoc_Mapping.hbm.xml"/>
-    <mapping resource="Sinhviendangkihocphan_Mapping.hbm.xml"/>
-    <mapping resource="Taikhoan_Mapping.hbm.xml"/>
-    <mapping resource="Thongtingiaovu_Mapping.hbm.xml"/>
+    <mapping resource="XML_Mapping/Sinhvien_Mapping.hbm.xml"/>
+    <mapping resource="XML_Mapping/Hocki_Mapping.hbm.xml"/>
+    <mapping resource="XML_Mapping/Lopdangkihocphan_Mapping.hbm.xml"/>
+    <mapping resource="XML_Mapping/Lophoc_Mapping.hbm.xml"/>
+    <mapping resource="XML_Mapping/Monhoc_Mapping.hbm.xml"/>
+    <mapping resource="XML_Mapping/Sinhviendangkihocphan_Mapping.hbm.xml"/>
+    <mapping resource="XML_Mapping/Taikhoan_Mapping.hbm.xml"/>
+    <mapping resource="XML_Mapping/Thongtingiaovu_Mapping.hbm.xml"/>
 
     <!-- DB schema will be updated if needed -->
 
