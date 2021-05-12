@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="QuanLyDKHP_Mapping.Sinhviendangkihocphan_Mapping" table="sinhviendangkihocphan"
+           schema="db_quanlydkhp">
+        <composite-id mapped="true" class="QuanLyDKHP_Mapping.Sinhviendangkihocphan_MappingPK">
+            <key-property name="sinhvienIdSinhVien" column="sinhvien_idSinhVien"/>
+            <key-property name="lopDangKiHocPhanIdLopDangKiHopPhan" column="LopDangKiHocPhan_idLopDangKiHopPhan"/>
+        </composite-id>
+    </class>
+</hibernate-mapping>

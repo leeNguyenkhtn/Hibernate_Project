@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="QuanLyDKHP_Mapping.Lopdangkihocphan_Mapping" table="lopdangkihocphan" schema="db_quanlydkhp">
+        <id name="idLopDangKiHopPhan" column="idLopDangKiHopPhan"/>
+        <property name="giaoVienLiThuyet" column="giaoVienLiThuyet"/>
+        <property name="tenPhongHoc" column="tenPhongHoc"/>
+        <property name="buoiHoc" column="buoiHoc"/>
+        <property name="caHoc" column="caHoc"/>
+        <property name="siSo" column="siSo"/>
+        <property name="soLuongDaDangKy" column="soLuongDaDangKy"/>
+        <property name="ngayBatDau" column="ngayBatDau"/>
+        <property name="ngayKetThuc" column="ngayKetThuc"/>
+    </class>
+</hibernate-mapping>

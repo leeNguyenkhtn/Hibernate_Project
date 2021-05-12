@@ -4,13 +4,12 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="QuanLyDKHP_Mapping.Sinhvien_Mapping" table="sinhvien" schema="db_quanlydkhp">
-        <id name="idSinhVien" column="idSinhVien"/>
-        <property name="mssv" column="MSSV"/>
+    <class name="QuanLyDKHP_Mapping.Thongtingiaovu_Mapping" table="thongtingiaovu" schema="db_quanlydkhp">
+        <id name="idGiaoVu" column="idGiaoVu"/>
         <property name="hoVaTen" column="hoVaTen"/>
         <property name="ngaySinh" column="ngaySinh"/>
         <property name="gioiTinh" column="gioiTinh"/>
-        <property name="diaChi" column="diaChi"/>
         <property name="soDienThoai" column="soDienThoai"/>
+        <property name="email" column="email"/>
     </class>
 </hibernate-mapping>

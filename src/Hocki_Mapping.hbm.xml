@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="QuanLyDKHP_Mapping.Hocki_Mapping" table="hocki" schema="db_quanlydkhp">
+        <id name="idHocKi" column="idHocKi"/>
+        <property name="tenHocKi" column="tenHocKi"/>
+        <property name="namHoc" column="namHoc"/>
+        <property name="ngayBatDau" column="ngayBatDau"/>
+        <property name="ngayKetThuc" column="ngayKetThuc"/>
+        <property name="trangThai" column="trangThai"/>
+    </class>
+</hibernate-mapping>
