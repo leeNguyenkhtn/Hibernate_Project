@@ -1,9 +1,14 @@
-package QuanLyDKHP_Mapping;
+package POJO;
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Date;
 import java.util.Objects;
 
-public class Hocki_Mapping {
+@Entity
+public class Hocki {
     private String idHocKi;
     private String tenHocKi;
     private int namHoc;
@@ -11,6 +16,8 @@ public class Hocki_Mapping {
     private Date ngayKetThuc;
     private int trangThai;
 
+    @Id
+    @Column(name = "idHocKi", nullable = false, length = 12)
     public String getIdHocKi() {
         return idHocKi;
     }
@@ -19,6 +26,8 @@ public class Hocki_Mapping {
         this.idHocKi = idHocKi;
     }
 
+    @Basic
+    @Column(name = "tenHocKi", nullable = false, length = 3)
     public String getTenHocKi() {
         return tenHocKi;
     }
@@ -27,6 +36,8 @@ public class Hocki_Mapping {
         this.tenHocKi = tenHocKi;
     }
 
+    @Basic
+    @Column(name = "namHoc", nullable = false)
     public int getNamHoc() {
         return namHoc;
     }
@@ -35,6 +46,8 @@ public class Hocki_Mapping {
         this.namHoc = namHoc;
     }
 
+    @Basic
+    @Column(name = "ngayBatDau", nullable = false)
     public Date getNgayBatDau() {
         return ngayBatDau;
     }
@@ -43,6 +56,8 @@ public class Hocki_Mapping {
         this.ngayBatDau = ngayBatDau;
     }
 
+    @Basic
+    @Column(name = "ngayKetThuc", nullable = false)
     public Date getNgayKetThuc() {
         return ngayKetThuc;
     }
@@ -51,6 +66,8 @@ public class Hocki_Mapping {
         this.ngayKetThuc = ngayKetThuc;
     }
 
+    @Basic
+    @Column(name = "trangThai", nullable = false)
     public int getTrangThai() {
         return trangThai;
     }
@@ -63,8 +80,8 @@ public class Hocki_Mapping {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Hocki_Mapping that = (Hocki_Mapping) o;
-        return namHoc == that.namHoc && trangThai == that.trangThai && Objects.equals(idHocKi, that.idHocKi) && Objects.equals(tenHocKi, that.tenHocKi) && Objects.equals(ngayBatDau, that.ngayBatDau) && Objects.equals(ngayKetThuc, that.ngayKetThuc);
+        Hocki hocki = (Hocki) o;
+        return namHoc == hocki.namHoc && trangThai == hocki.trangThai && Objects.equals(idHocKi, hocki.idHocKi) && Objects.equals(tenHocKi, hocki.tenHocKi) && Objects.equals(ngayBatDau, hocki.ngayBatDau) && Objects.equals(ngayKetThuc, hocki.ngayKetThuc);
     }
 
     @Override

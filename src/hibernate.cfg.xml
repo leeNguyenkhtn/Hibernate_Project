@@ -3,22 +3,13 @@
     "-//Hibernate/Hibernate Configuration DTD//EN"
     "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-  <session-factory>
-    <!--Must have-->
-    <property name="connection.url">jdbc:mysql://localhost:3306/db_quanlydkhp</property>
-    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="show_sql">true</property>
-    <property name="hibernate.hbm2ddl.auto">update</property>
-    <mapping resource="XML_Mapping/Sinhvien_Mapping.hbm.xml"/>
-    <mapping resource="XML_Mapping/Hocki_Mapping.hbm.xml"/>
-    <mapping resource="XML_Mapping/Lopdangkihocphan_Mapping.hbm.xml"/>
-    <mapping resource="XML_Mapping/Lophoc_Mapping.hbm.xml"/>
-    <mapping resource="XML_Mapping/Monhoc_Mapping.hbm.xml"/>
-    <mapping resource="XML_Mapping/Sinhviendangkihocphan_Mapping.hbm.xml"/>
-    <mapping resource="XML_Mapping/Taikhoan_Mapping.hbm.xml"/>
-    <mapping resource="XML_Mapping/Thongtingiaovu_Mapping.hbm.xml"/>
-
-    <!-- DB schema will be updated if needed -->
-
-  </session-factory>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.password">3008NGUyenmysql</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/db_quanlydkhp</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+    </session-factory>
 </hibernate-configuration>

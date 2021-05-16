@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
+                 version="3.0">
+
+    <entity class="POJO.Monhoc">
+        <table name="monhoc" schema="db_quanlydkhp" catalog=""/>
+        <attributes>
+            <id name="idMonHoc">
+                <column name="idMonHoc" length="12"/>
+            </id>
+            <basic name="maMonHoc">
+                <column name="maMonHoc" length="8"/>
+            </basic>
+            <basic name="tenMonHoc">
+                <column name="tenMonHoc" length="80"/>
+            </basic>
+            <basic name="soTinChi">
+                <column name="soTinChi" precision="-1"/>
+            </basic>
+        </attributes>
+    </entity>
+</entity-mappings>

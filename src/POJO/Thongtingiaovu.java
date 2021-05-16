@@ -1,16 +1,21 @@
-package QuanLyDKHP_Mapping;
+package POJO;
 
+import javax.persistence.*;
 import java.sql.Date;
 import java.util.Objects;
 
-public class Thongtingiaovu_Mapping {
+@Entity
+public class Thongtingiaovu {
     private String idGiaoVu;
     private String hoVaTen;
     private Date ngaySinh;
     private String gioiTinh;
     private String soDienThoai;
     private String email;
+    private Taikhoan taikhoanByIdGiaoVu;
 
+    @Id
+    @Column(name = "idGiaoVu", nullable = false, length = 12)
     public String getIdGiaoVu() {
         return idGiaoVu;
     }
@@ -19,6 +24,8 @@ public class Thongtingiaovu_Mapping {
         this.idGiaoVu = idGiaoVu;
     }
 
+    @Basic
+    @Column(name = "hoVaTen", nullable = false, length = 45)
     public String getHoVaTen() {
         return hoVaTen;
     }
@@ -27,6 +34,8 @@ public class Thongtingiaovu_Mapping {
         this.hoVaTen = hoVaTen;
     }
 
+    @Basic
+    @Column(name = "ngaySinh", nullable = false)
     public Date getNgaySinh() {
         return ngaySinh;
     }
@@ -35,6 +44,8 @@ public class Thongtingiaovu_Mapping {
         this.ngaySinh = ngaySinh;
     }
 
+    @Basic
+    @Column(name = "gioiTinh", nullable = false, length = 3)
     public String getGioiTinh() {
         return gioiTinh;
     }
@@ -43,6 +54,8 @@ public class Thongtingiaovu_Mapping {
         this.gioiTinh = gioiTinh;
     }
 
+    @Basic
+    @Column(name = "soDienThoai", nullable = true, length = 15)
     public String getSoDienThoai() {
         return soDienThoai;
     }
@@ -51,6 +64,8 @@ public class Thongtingiaovu_Mapping {
         this.soDienThoai = soDienThoai;
     }
 
+    @Basic
+    @Column(name = "email", nullable = true, length = 45)
     public String getEmail() {
         return email;
     }
@@ -63,12 +78,22 @@ public class Thongtingiaovu_Mapping {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Thongtingiaovu_Mapping that = (Thongtingiaovu_Mapping) o;
+        Thongtingiaovu that = (Thongtingiaovu) o;
         return Objects.equals(idGiaoVu, that.idGiaoVu) && Objects.equals(hoVaTen, that.hoVaTen) && Objects.equals(ngaySinh, that.ngaySinh) && Objects.equals(gioiTinh, that.gioiTinh) && Objects.equals(soDienThoai, that.soDienThoai) && Objects.equals(email, that.email);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(idGiaoVu, hoVaTen, ngaySinh, gioiTinh, soDienThoai, email);
+    }
+
+    @OneToOne
+    @JoinColumn(name = "idGiaoVu", referencedColumnName = "idTaiKhoan", nullable = false)
+    public Taikhoan getTaikhoanByIdGiaoVu() {
+        return taikhoanByIdGiaoVu;
+    }
+
+    public void setTaikhoanByIdGiaoVu(Taikhoan taikhoanByIdGiaoVu) {
+        this.taikhoanByIdGiaoVu = taikhoanByIdGiaoVu;
     }
 }

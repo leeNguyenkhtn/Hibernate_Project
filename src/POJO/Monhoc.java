@@ -1,13 +1,20 @@
-package QuanLyDKHP_Mapping;
+package POJO;
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Objects;
 
-public class Monhoc_Mapping {
+@Entity
+public class Monhoc {
     private String idMonHoc;
     private String maMonHoc;
     private String tenMonHoc;
     private int soTinChi;
 
+    @Id
+    @Column(name = "idMonHoc", nullable = false, length = 12)
     public String getIdMonHoc() {
         return idMonHoc;
     }
@@ -16,6 +23,8 @@ public class Monhoc_Mapping {
         this.idMonHoc = idMonHoc;
     }
 
+    @Basic
+    @Column(name = "maMonHoc", nullable = false, length = 8)
     public String getMaMonHoc() {
         return maMonHoc;
     }
@@ -24,6 +33,8 @@ public class Monhoc_Mapping {
         this.maMonHoc = maMonHoc;
     }
 
+    @Basic
+    @Column(name = "tenMonHoc", nullable = false, length = 80)
     public String getTenMonHoc() {
         return tenMonHoc;
     }
@@ -32,6 +43,8 @@ public class Monhoc_Mapping {
         this.tenMonHoc = tenMonHoc;
     }
 
+    @Basic
+    @Column(name = "soTinChi", nullable = false)
     public int getSoTinChi() {
         return soTinChi;
     }
@@ -44,8 +57,8 @@ public class Monhoc_Mapping {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Monhoc_Mapping that = (Monhoc_Mapping) o;
-        return soTinChi == that.soTinChi && Objects.equals(idMonHoc, that.idMonHoc) && Objects.equals(maMonHoc, that.maMonHoc) && Objects.equals(tenMonHoc, that.tenMonHoc);
+        Monhoc monhoc = (Monhoc) o;
+        return soTinChi == monhoc.soTinChi && Objects.equals(idMonHoc, monhoc.idMonHoc) && Objects.equals(maMonHoc, monhoc.maMonHoc) && Objects.equals(tenMonHoc, monhoc.tenMonHoc);
     }
 
     @Override

@@ -1,12 +1,16 @@
-package QuanLyDKHP_Mapping;
+package POJO;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Sinhviendangkihocphan_MappingPK implements Serializable {
+public class SinhviendangkihocphanPK implements Serializable {
     private String sinhvienIdSinhVien;
     private String lopDangKiHocPhanIdLopDangKiHopPhan;
 
+    @Column(name = "sinhvien_idSinhVien", nullable = false, length = 8)
+    @Id
     public String getSinhvienIdSinhVien() {
         return sinhvienIdSinhVien;
     }
@@ -15,6 +19,8 @@ public class Sinhviendangkihocphan_MappingPK implements Serializable {
         this.sinhvienIdSinhVien = sinhvienIdSinhVien;
     }
 
+    @Column(name = "LopDangKiHocPhan_idLopDangKiHopPhan", nullable = false, length = 45)
+    @Id
     public String getLopDangKiHocPhanIdLopDangKiHopPhan() {
         return lopDangKiHocPhanIdLopDangKiHopPhan;
     }
@@ -27,7 +33,7 @@ public class Sinhviendangkihocphan_MappingPK implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Sinhviendangkihocphan_MappingPK that = (Sinhviendangkihocphan_MappingPK) o;
+        SinhviendangkihocphanPK that = (SinhviendangkihocphanPK) o;
         return Objects.equals(sinhvienIdSinhVien, that.sinhvienIdSinhVien) && Objects.equals(lopDangKiHocPhanIdLopDangKiHopPhan, that.lopDangKiHocPhanIdLopDangKiHopPhan);
     }
 

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
+                 version="3.0">
+
+    <entity class="POJO.Sinhvien">
+        <table name="sinhvien" schema="db_quanlydkhp" catalog=""/>
+        <attributes>
+            <id name="idSinhVien">
+                <column name="idSinhVien" length="12"/>
+            </id>
+            <basic name="mssv">
+                <column name="MSSV" length="8"/>
+            </basic>
+            <basic name="hoVaTen">
+                <column name="hoVaTen" length="45"/>
+            </basic>
+            <basic name="ngaySinh">
+                <column name="ngaySinh" precision="-1"/>
+            </basic>
+            <basic name="gioiTinh">
+                <column name="gioiTinh" length="3"/>
+            </basic>
+            <basic name="diaChi">
+                <column name="diaChi" nullable="false" length="80"/>
+            </basic>
+            <basic name="soDienThoai">
+                <column name="soDienThoai" nullable="false" length="15"/>
+            </basic>
+            <one-to-one name="taikhoanByIdSinhVien" optional="true" target-entity="POJO.Taikhoan">
+                <join-column name="idGiaoVu" referenced-column-name="idTaiKhoan"/>
+            </one-to-one>
+        </attributes>
+    </entity>
+</entity-mappings>
