@@ -1,5 +1,6 @@
 package POJO;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -19,17 +20,16 @@ public class Sinhvien {
     private String gioiTinh;
     private String diaChi;
     private String soDienThoai;
-    private Taikhoan taikhoanByIdSinhVien;
+    private Taikhoan taiKhoan;
+    private Lophoc lopHoc;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "LopHoc_idLopHoc",nullable = false)
-    private Lophoc lophocIdLopHoc;
-
-    public Lophoc getLophocIdLopHoc() {
-        return lophocIdLopHoc;
+    @JoinColumn(name = "LopHoc_idLopHoc")
+    public Lophoc getLopHoc() {
+        return lopHoc;
     }
 
-    public void setLophocIdLopHoc(Lophoc lophocIdLopHoc) {
-        this.lophocIdLopHoc = lophocIdLopHoc;
+    public void setLopHoc(Lophoc lopHoc) {
+        this.lopHoc = lopHoc;
     }
 
     @Id
@@ -102,13 +102,13 @@ public class Sinhvien {
         this.soDienThoai = soDienThoai;
     }
 
-    public void setTaikhoanByIdSinhVien(Taikhoan taikhoanByIdSinhVien) {
-        this.taikhoanByIdSinhVien = taikhoanByIdSinhVien;
+    public void setTaiKhoan(Taikhoan taikhoanByIdSinhVien) {
+        this.taiKhoan = taikhoanByIdSinhVien;
     }
     @OneToOne
     @JoinColumn(name = "idSinhVien", referencedColumnName = "idTaiKhoan", nullable = false)
-    public  Taikhoan getTaikhoanByIdSinhVien(){
-        return taikhoanByIdSinhVien;
+    public  Taikhoan getTaiKhoan(){
+        return taiKhoan;
     }
 
     @Override
@@ -116,7 +116,7 @@ public class Sinhvien {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Sinhvien sinhvien = (Sinhvien) o;
-        return Objects.equals(idSinhVien, sinhvien.idSinhVien) && Objects.equals(mssv, sinhvien.mssv) && Objects.equals(hoVaTen, sinhvien.hoVaTen) && Objects.equals(ngaySinh, sinhvien.ngaySinh) && Objects.equals(gioiTinh, sinhvien.gioiTinh) && Objects.equals(diaChi, sinhvien.diaChi) && Objects.equals(soDienThoai, sinhvien.soDienThoai);
+        return Objects.equals(idSinhVien, sinhvien.idSinhVien) && Objects.equals(mssv, sinhvien.mssv) && Objects.equals(hoVaTen, sinhvien.hoVaTen) && Objects.equals(ngaySinh, sinhvien.ngaySinh) && Objects.equals(gioiTinh, sinhvien.gioiTinh) && Objects.equals(diaChi, sinhvien.diaChi) && Objects.equals(soDienThoai, sinhvien.soDienThoai) && Objects.equals(lopHoc,sinhvien.lopHoc);
     }
 
     @Override
@@ -129,6 +129,18 @@ public class Sinhvien {
         Session session= sessionFactory.getCurrentSession();
         System.out.println("Session created");
         Transaction tx = session.beginTransaction();
-        session.close();
+        try
+        {
+
+            tx.commit();
+        }
+        catch (HibernateException e)
+        {
+            tx.rollback();
+
+        }finally {
+            session.close();
+        }
+
     }
 }

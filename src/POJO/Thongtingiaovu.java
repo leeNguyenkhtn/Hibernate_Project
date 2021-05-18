@@ -12,7 +12,7 @@ public class Thongtingiaovu {
     private String gioiTinh;
     private String soDienThoai;
     private String email;
-    private Taikhoan taikhoanByIdGiaoVu;
+    private Taikhoan taiKhoan;
 
     @Id
     @Column(name = "idGiaoVu", nullable = false, length = 12)
@@ -89,11 +89,11 @@ public class Thongtingiaovu {
 
     @OneToOne
     @JoinColumn(name = "idGiaoVu", referencedColumnName = "idTaiKhoan", nullable = false)
-    public Taikhoan getTaikhoanByIdGiaoVu() {
-        return taikhoanByIdGiaoVu;
+    public Taikhoan getTaiKhoan() {
+        return taiKhoan;
     }
 
-    public void setTaikhoanByIdGiaoVu(Taikhoan taikhoanByIdGiaoVu) {
-        this.taikhoanByIdGiaoVu = taikhoanByIdGiaoVu;
+    public void setTaiKhoan(Taikhoan taikhoanByIdGiaoVu) {
+        this.taiKhoan = taikhoanByIdGiaoVu;
     }
 }

@@ -9,13 +9,15 @@ public class Lopdangkihocphan {
     private String idLopDangKiHopPhan;
     private String giaoVienLiThuyet;
     private String tenPhongHoc;
-    private Object buoiHoc;
-    private Object caHoc;
+    private int buoiHoc;
+    private int caHoc;
     private int siSo;
     private int soLuongDaDangKy;
     private Date ngayBatDau;
     private Date ngayKetThuc;
-    private Hocki hockiByHocKiIdHocKi;
+    private Hocki idHocKi;
+    private Monhoc monHoc;
+    private Lophoc lopHoc;
 
     @Id
     @Column(name = "idLopDangKiHopPhan", nullable = false, length = 12)
@@ -49,21 +51,21 @@ public class Lopdangkihocphan {
 
     @Basic
     @Column(name = "buoiHoc", nullable = false)
-    public Object getBuoiHoc() {
+    public int getBuoiHoc() {
         return buoiHoc;
     }
 
-    public void setBuoiHoc(Object buoiHoc) {
+    public void setBuoiHoc(int buoiHoc) {
         this.buoiHoc = buoiHoc;
     }
 
     @Basic
     @Column(name = "caHoc", nullable = false)
-    public Object getCaHoc() {
+    public int getCaHoc() {
         return caHoc;
     }
 
-    public void setCaHoc(Object caHoc) {
+    public void setCaHoc(int caHoc) {
         this.caHoc = caHoc;
     }
 
@@ -122,11 +124,23 @@ public class Lopdangkihocphan {
 
     @ManyToOne
     @JoinColumn(name = "HocKi_idHocKi", referencedColumnName = "idHocKi", nullable = false)
-    public Hocki getHockiByHocKiIdHocKi() {
-        return hockiByHocKiIdHocKi;
+    public Hocki getIdHocKi() {
+        return idHocKi;
     }
 
-    public void setHockiByHocKiIdHocKi(Hocki hockiByHocKiIdHocKi) {
-        this.hockiByHocKiIdHocKi = hockiByHocKiIdHocKi;
+    public void setIdHocKi(Hocki idHocKi) {
+        this.idHocKi = idHocKi;
+    }
+    @ManyToOne
+    @JoinColumn(name="MonHoc_idMonHoc",referencedColumnName = "idMonHoc",nullable = false)
+    public Monhoc getMonHoc(){ return monHoc;}
+    public void setMonHoc(Monhoc idMonHoc){
+        this.monHoc = idMonHoc;
+    }
+    @ManyToOne
+    @JoinColumn(name = "LopHoc_idLopHoc",referencedColumnName = "idLopHoc",nullable = false)
+    public Lophoc getLopHoc(){ return lopHoc;}
+    public void setLopHoc(Lophoc idlopHoc) {
+        this.lopHoc = idlopHoc;
     }
 }

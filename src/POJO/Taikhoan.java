@@ -8,7 +8,7 @@ public class Taikhoan {
     private String idTaiKhoan;
     private String tenDangNhap;
     private String matKhau;
-    private Object dinhDanh;
+    private String dinhDanh;
     //private Sinhvien sinhvienByIdTaiKhoan;
 
     @Id
@@ -43,11 +43,10 @@ public class Taikhoan {
 
     @Basic
     @Column(name = "dinhDanh", nullable = false)
-    public Object getDinhDanh() {
+    public String getDinhDanh() {
         return dinhDanh;
     }
-
-    public void setDinhDanh(Object dinhDanh) {
+    public void setDinhDanh(String dinhDanh) {
         this.dinhDanh = dinhDanh;
     }
 

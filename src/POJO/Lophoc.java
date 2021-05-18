@@ -1,17 +1,19 @@
 package POJO;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Lophoc {
+@Table(name = "lophoc")
+public class Lophoc{
     private String idLopHoc;
     private String tenLopHoc;
     private int tongSoSv;
     private int tongSoNam;
     private int tongSoNu;
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "Lophoc")
     private List<Sinhvien> dsSinhVien;
 
     @Id
@@ -63,7 +65,7 @@ public class Lophoc {
     public void setTongSoNu(int tongSoNu) {
         this.tongSoNu = tongSoNu;
     }
-
+    @OneToMany(targetEntity = Sinhvien.class,fetch = FetchType.LAZY,mappedBy = "lopHoc")
     public List<Sinhvien> getDsSinhVien(){
         return dsSinhVien;
     }

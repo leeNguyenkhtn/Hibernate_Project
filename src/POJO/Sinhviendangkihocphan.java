@@ -4,14 +4,13 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@IdClass(SinhviendangkihocphanPK.class)
 public class Sinhviendangkihocphan {
-    private String sinhvienIdSinhVien;
-    private String lopDangKiHocPhanIdLopDangKiHopPhan;
+
+    private SinhviendangkihocphanPK sinhviendangkihocphanPK;
     private Sinhvien sinhvienBySinhvienIdSinhVien;
     private Lopdangkihocphan lopdangkihocphanByLopDangKiHocPhanIdLopDangKiHopPhan;
 
-    @Id
+    /*@Id
     @Column(name = "sinhvien_idSinhVien", nullable = false, length = 8)
     public String getSinhvienIdSinhVien() {
         return sinhvienIdSinhVien;
@@ -42,7 +41,7 @@ public class Sinhviendangkihocphan {
     @Override
     public int hashCode() {
         return Objects.hash(sinhvienIdSinhVien, lopDangKiHocPhanIdLopDangKiHopPhan);
-    }
+    }*/
 
     @ManyToOne
     @JoinColumn(name = "sinhvien_idSinhVien", referencedColumnName = "idSinhVien", nullable = false)
@@ -62,5 +61,14 @@ public class Sinhviendangkihocphan {
 
     public void setLopdangkihocphanByLopDangKiHocPhanIdLopDangKiHopPhan(Lopdangkihocphan lopdangkihocphanByLopDangKiHocPhanIdLopDangKiHopPhan) {
         this.lopdangkihocphanByLopDangKiHocPhanIdLopDangKiHopPhan = lopdangkihocphanByLopDangKiHocPhanIdLopDangKiHopPhan;
+    }
+    @EmbeddedId
+    public SinhviendangkihocphanPK getSinhviendangkihocphanPK()
+    {
+        return   sinhviendangkihocphanPK;
+    }
+
+    public void setSinhviendangkihocphanPK(SinhviendangkihocphanPK sinhviendangkihocphanPK) {
+        this.sinhviendangkihocphanPK = sinhviendangkihocphanPK;
     }
 }

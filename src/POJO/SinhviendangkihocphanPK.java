@@ -1,16 +1,16 @@
 package POJO;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Objects;
-
+@Embeddable
 public class SinhviendangkihocphanPK implements Serializable {
     private String sinhvienIdSinhVien;
     private String lopDangKiHocPhanIdLopDangKiHopPhan;
 
-    @Column(name = "sinhvien_idSinhVien", nullable = false, length = 8)
-    @Id
     public String getSinhvienIdSinhVien() {
         return sinhvienIdSinhVien;
     }
@@ -19,8 +19,6 @@ public class SinhviendangkihocphanPK implements Serializable {
         this.sinhvienIdSinhVien = sinhvienIdSinhVien;
     }
 
-    @Column(name = "LopDangKiHocPhan_idLopDangKiHopPhan", nullable = false, length = 45)
-    @Id
     public String getLopDangKiHocPhanIdLopDangKiHopPhan() {
         return lopDangKiHocPhanIdLopDangKiHopPhan;
     }
