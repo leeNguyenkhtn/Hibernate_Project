@@ -1,15 +1,16 @@
 package POJO;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class Taikhoan {
+public class Taikhoan implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String idTaiKhoan;
     private String tenDangNhap;
     private String matKhau;
     private String dinhDanh;
-    //private Sinhvien sinhvienByIdTaiKhoan;
 
     @Id
     @Column(name = "idTaiKhoan", nullable = false, length = 12)
@@ -64,4 +65,13 @@ public class Taikhoan {
     }
 
 
+    @Override
+    public String toString() {
+        return "Taikhoan{" +
+                "idTaiKhoan='" + idTaiKhoan + '\'' +
+                ", tenDangNhap='" + tenDangNhap + '\'' +
+                ", matKhau='" + matKhau + '\'' +
+                ", dinhDanh='" + dinhDanh + '\'' +
+                '}';
+    }
 }

@@ -66,6 +66,7 @@ public class Lophoc{
         this.tongSoNu = tongSoNu;
     }
     @OneToMany(targetEntity = Sinhvien.class,fetch = FetchType.LAZY,mappedBy = "lopHoc")
+
     public List<Sinhvien> getDsSinhVien(){
         return dsSinhVien;
     }

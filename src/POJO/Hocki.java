@@ -1,10 +1,8 @@
 package POJO;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -15,7 +13,7 @@ public class Hocki {
     private Date ngayBatDau;
     private Date ngayKetThuc;
     private int trangThai;
-
+    private List<Lopdangkihocphan> dsLopDangKiHocPhan;
     @Id
     @Column(name = "idHocKi", nullable = false, length = 12)
     public String getIdHocKi() {
@@ -76,6 +74,15 @@ public class Hocki {
         this.trangThai = trangThai;
     }
 
+    @OneToMany(targetEntity = Lopdangkihocphan.class,fetch = FetchType.LAZY,mappedBy = "lopHoc")
+    public List<Lopdangkihocphan> getDsLopDangKiHocPhan()
+    {
+        return dsLopDangKiHocPhan;
+    }
+    public  void setDsLopDangKiHocPhan(List<Lopdangkihocphan> dsLopDangKiHocPhan)
+    {
+        this.dsLopDangKiHocPhan = dsLopDangKiHocPhan;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -88,4 +95,5 @@ public class Hocki {
     public int hashCode() {
         return Objects.hash(idHocKi, tenHocKi, namHoc, ngayBatDau, ngayKetThuc, trangThai);
     }
+
 }

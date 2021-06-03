@@ -1,11 +1,5 @@
 package POJO;
 
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import utils.HibernateUtil;
-
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Objects;
@@ -22,7 +16,7 @@ public class Sinhvien {
     private String soDienThoai;
     private Taikhoan taiKhoan;
     private Lophoc lopHoc;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "LopHoc_idLopHoc")
     public Lophoc getLopHoc() {
         return lopHoc;
@@ -122,25 +116,5 @@ public class Sinhvien {
     @Override
     public int hashCode() {
         return Objects.hash(idSinhVien, mssv, hoVaTen, ngaySinh, gioiTinh, diaChi, soDienThoai);
-    }
-    public static  void main(String[] args)
-    {
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        Session session= sessionFactory.getCurrentSession();
-        System.out.println("Session created");
-        Transaction tx = session.beginTransaction();
-        try
-        {
-
-            tx.commit();
-        }
-        catch (HibernateException e)
-        {
-            tx.rollback();
-
-        }finally {
-            session.close();
-        }
-
     }
 }
