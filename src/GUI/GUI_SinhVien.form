@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="GUI_SinhVien.GUI_SinhVien">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="GUI.GUI_SinhVien">
   <grid id="27dc6" binding="sinhVienPanel" layout-manager="GridBagLayout">
     <constraints>
       <xy x="20" y="20" width="500" height="415"/>
@@ -45,7 +45,7 @@
       </component>
       <grid id="b8692" binding="noiDungPanel" layout-manager="CardLayout" hgap="10" vgap="0">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="4" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="0" row-span="1" col-span="5" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="14.0"/>
         </constraints>
         <properties/>
@@ -245,6 +245,15 @@
           </grid>
         </children>
       </grid>
+      <component id="8eddd" class="javax.swing.JButton" binding="dangXuatButton" default-binding="true">
+        <constraints>
+          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Dang xuat"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>

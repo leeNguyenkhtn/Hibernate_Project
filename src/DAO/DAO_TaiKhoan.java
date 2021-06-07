@@ -13,9 +13,9 @@ import javax.persistence.NoResultException;
 import java.util.List;
 
 public class DAO_TaiKhoan {
-    public static boolean createRecord(String tenDangNhap,String matKhau,String dinhDanh)
+    public static String createRecord(String tenDangNhap,String matKhau,String dinhDanh)
     {
-        boolean result = true;
+        String id = null;
         Taikhoan taiKhoan;
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session= sessionFactory.getCurrentSession();
@@ -23,7 +23,8 @@ public class DAO_TaiKhoan {
         try
         {
             taiKhoan = new Taikhoan();
-            taiKhoan.setIdTaiKhoan(GenerateIdUtil.RandomId());
+            id = GenerateIdUtil.RandomId();
+            taiKhoan.setIdTaiKhoan(id);
             taiKhoan.setTenDangNhap(tenDangNhap);
             taiKhoan.setMatKhau(matKhau);
             taiKhoan.setDinhDanh(dinhDanh);
@@ -34,14 +35,13 @@ public class DAO_TaiKhoan {
         {
             System.err.println(e);
             tx.rollback();
-            result = false;
         }
         finally {
             session.close();
         }
-        return result;
+        return id;
     }
-    public static  boolean createRecord(Taikhoan taikhoan)
+    public static boolean createRecord(Taikhoan taikhoan)
     {
         boolean result = true;
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -150,7 +150,7 @@ public class DAO_TaiKhoan {
         }
         return tk;
     }
-    public static boolean deleteRecord(Taikhoan taikhoan)
+    public static boolean deleteRecord(String id)
     {
         boolean resutl = true;
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -158,6 +158,7 @@ public class DAO_TaiKhoan {
         Transaction tx = session.beginTransaction();
         try
         {
+            Taikhoan taikhoan = session.load(Taikhoan.class,id);
             session.delete(taikhoan);
             tx.commit();
         }
@@ -171,5 +172,13 @@ public class DAO_TaiKhoan {
             session.close();
         }
         return resutl;
+    }
+    public static void main(String[] args)
+    {
+        createRecord("quang123","123456789","sinhvien");
+        createRecord("myHanhHCM","123456us","giaovu");
+        createRecord("ducMinhBG","BG66778899","giaovu");
+        createRecord("nguyenTrangPY","qwerty123","sinhvien");
+        createRecord("nguyenPhucBD","zxcvbnm","sinhvien");
     }
 }

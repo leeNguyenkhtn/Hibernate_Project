@@ -15,10 +15,12 @@ public class DAO_SinhVien {
         Transaction tx = session.beginTransaction();
         try
         {
+            session.save(sinhvien);
             tx.commit();
         }
         catch (Exception e)
         {
+            result = false;
             tx.rollback();
         }
         finally {
@@ -45,5 +47,9 @@ public class DAO_SinhVien {
             session.close();
         }
         return sinhvien;
+    }
+    public static void main(String[] args)
+    {
+
     }
 }

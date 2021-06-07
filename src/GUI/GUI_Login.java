@@ -2,7 +2,7 @@ package GUI;
 
 import javax.swing.*;
 import BUS.BUS_TaiKhoan;
-import GUI_SinhVien.GUI_SinhVien;
+
 public class GUI_Login extends JFrame{
     private JPasswordField passwordField;
     private JButton login_btn;
@@ -44,6 +44,5 @@ public class GUI_Login extends JFrame{
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         GUI_Login login = new GUI_Login();
         SwingUtilities.invokeLater(() -> login.setVisible(true));
-
     }
 }

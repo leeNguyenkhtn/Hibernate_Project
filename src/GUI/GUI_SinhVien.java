@@ -1,7 +1,6 @@
-package GUI_SinhVien;
+package GUI;
 
 import BUS.BUS_SinhVien;
-import GUI.GUI_Login;
 import POJO.Sinhvien;
 
 import javax.swing.*;
@@ -29,6 +28,7 @@ public class GUI_SinhVien extends JFrame{
     private JTextField soDienThoaiTF;
     private JLabel lopLabel;
     private JPanel thongTinPanel;
+    private JButton dangXuatButton;
 
     public GUI_SinhVien(String idSinhVien)
     {
