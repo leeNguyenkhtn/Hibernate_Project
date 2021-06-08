@@ -87,7 +87,7 @@ public class Thongtingiaovu {
         return Objects.hash(idGiaoVu, hoVaTen, ngaySinh, gioiTinh, soDienThoai, email);
     }
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "idGiaoVu", referencedColumnName = "idTaiKhoan", nullable = false)
     public Taikhoan getTaiKhoan() {
         return taiKhoan;

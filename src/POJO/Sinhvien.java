@@ -16,7 +16,7 @@ public class Sinhvien {
     private String soDienThoai;
     private Taikhoan taiKhoan;
     private Lophoc lopHoc;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "LopHoc_idLopHoc")
     public Lophoc getLopHoc() {
         return lopHoc;

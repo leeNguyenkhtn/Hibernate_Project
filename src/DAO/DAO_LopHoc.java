@@ -1,5 +1,6 @@
 
 package DAO;
+import CONST_CODE.Code;
 import POJO.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -13,10 +14,9 @@ import java.util.List;
 
 
 public class DAO_LopHoc {
-    public static boolean createRecord(Lophoc lophoc)
+    public static int createRecord(Lophoc lophoc)
     {
-        boolean result = true;
-        Taikhoan taiKhoan = null;
+        int state = Code.THANH_CONG;
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session= sessionFactory.getCurrentSession();
         Transaction tx = session.beginTransaction();
@@ -28,13 +28,12 @@ public class DAO_LopHoc {
         catch(Exception e)
         {
             tx.rollback();
-            System.err.println(e);
-            result = false;
+            state = Code.THAT_BAI;
         }
         finally {
             session.close();
         }
-        return result;
+        return state;
     }
     public static List<Lophoc> displayRecord()
     {
@@ -102,40 +101,26 @@ public class DAO_LopHoc {
         }
         return dsSinhVien;
     }
-    public static boolean deleteRecord(Lophoc lophoc)
+    public static int deleteRecord(String idLopHoc)
     {
-        boolean result = true;
+        int state = Code.THANH_CONG;
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session= sessionFactory.getCurrentSession();
         Transaction tx = session.beginTransaction();
         try
         {
-            session.delete(lophoc);
+            Lophoc lh = session.load(Lophoc.class, idLopHoc);
+            session.delete(lh);
             tx.commit();
         }
         catch(Exception e)
         {
-            System.err.print(e);
-            result = false;
+            state = Code.THAT_BAI;
             tx.rollback();
         }
         finally {
             session.close();
         }
-        return result;
-    }
-    public static void main(String[] args)
-    {
-        /*if(lophoc!=null)
-        {
-            System.out.println(lophoc.getTongSoNam());
-        }*/
-        Lophoc lophoc = new Lophoc();
-        lophoc.setIdLopHoc(GenerateIdUtil.RandomId());
-        lophoc.setTenLopHoc("19vllt2");
-        lophoc.setTongSoNam(70);
-        lophoc.setTongSoNu(15);
-        lophoc.setTongSoSv(85);
-        System.out.println(createRecord(lophoc));
+        return state;
     }
 }

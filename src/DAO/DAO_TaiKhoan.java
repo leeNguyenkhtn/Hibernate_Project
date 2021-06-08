@@ -8,7 +8,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import utils.HibernateUtil;
 import utils.GenerateIdUtil;
-
+import CONST_CODE.Code;
 import javax.persistence.NoResultException;
 import java.util.List;
 
@@ -84,11 +84,11 @@ public class DAO_TaiKhoan {
         }
         return dsTaiKhoan;
     }
-    public static boolean updatePassword(String tenDangNhap, String matKhauCu,String matKhauMoi)
+    public static int updatePassword(String tenDangNhap, String matKhauCu,String matKhauMoi)
     {
         Taikhoan taikhoan =null;
         String  id = findTaiKhoanByUserName(tenDangNhap).getIdTaiKhoan();
-        boolean result = true;
+        int result = 0;
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session= sessionFactory.getCurrentSession();
         Transaction tx = session.beginTransaction();
@@ -105,14 +105,12 @@ public class DAO_TaiKhoan {
                 }
                 else
                 {
-                    System.err.println("Mat khau cu khong trung khop");
-                    result = false;
+                    result = Code.MAT_KHAU_KHONG_DUNG;
                 }
             }
             else
             {
-                System.err.println("Ten dang nhap khong ton tai");
-                result = false;
+                result = Code.TEN_DANG_NHAP_KHONG_TON_TAI;
             }
             tx.commit();
         }
@@ -172,13 +170,5 @@ public class DAO_TaiKhoan {
             session.close();
         }
         return resutl;
-    }
-    public static void main(String[] args)
-    {
-        createRecord("quang123","123456789","sinhvien");
-        createRecord("myHanhHCM","123456us","giaovu");
-        createRecord("ducMinhBG","BG66778899","giaovu");
-        createRecord("nguyenTrangPY","qwerty123","sinhvien");
-        createRecord("nguyenPhucBD","zxcvbnm","sinhvien");
     }
 }

@@ -13,7 +13,7 @@ public class Hocki {
     private Date ngayBatDau;
     private Date ngayKetThuc;
     private int trangThai;
-    private List<Lopdangkihocphan> dsLopDangKiHocPhan;
+    private List<Kydangkihocphan> dsKyDangKiHocPhan;
     @Id
     @Column(name = "idHocKi", nullable = false, length = 12)
     public String getIdHocKi() {
@@ -74,14 +74,14 @@ public class Hocki {
         this.trangThai = trangThai;
     }
 
-    @OneToMany(targetEntity = Lopdangkihocphan.class,fetch = FetchType.LAZY,mappedBy = "lopHoc")
-    public List<Lopdangkihocphan> getDsLopDangKiHocPhan()
+    @OneToMany(targetEntity = Kydangkihocphan.class,fetch = FetchType.LAZY,mappedBy = "hocKi")
+    public List<Kydangkihocphan> getDsLopDangKiHocPhan()
     {
-        return dsLopDangKiHocPhan;
+        return dsKyDangKiHocPhan;
     }
-    public  void setDsLopDangKiHocPhan(List<Lopdangkihocphan> dsLopDangKiHocPhan)
+    public  void setDsLopDangKiHocPhan(List<Kydangkihocphan> dsLopDangKiHocPhan)
     {
-        this.dsLopDangKiHocPhan = dsLopDangKiHocPhan;
+        this.dsKyDangKiHocPhan = dsLopDangKiHocPhan;
     }
     @Override
     public boolean equals(Object o) {
@@ -95,5 +95,4 @@ public class Hocki {
     public int hashCode() {
         return Objects.hash(idHocKi, tenHocKi, namHoc, ngayBatDau, ngayKetThuc, trangThai);
     }
-
 }

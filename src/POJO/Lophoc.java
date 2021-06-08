@@ -1,8 +1,6 @@
 package POJO;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -65,8 +63,8 @@ public class Lophoc{
     public void setTongSoNu(int tongSoNu) {
         this.tongSoNu = tongSoNu;
     }
-    @OneToMany(targetEntity = Sinhvien.class,fetch = FetchType.LAZY,mappedBy = "lopHoc")
 
+    @OneToMany(targetEntity = Sinhvien.class,fetch = FetchType.LAZY,mappedBy = "lopHoc")
     public List<Sinhvien> getDsSinhVien(){
         return dsSinhVien;
     }

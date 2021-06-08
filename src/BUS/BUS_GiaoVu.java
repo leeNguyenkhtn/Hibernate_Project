@@ -1,10 +1,10 @@
 package BUS;
 
+import CONST_CODE.Code;
 import DAO.DAO_TaiKhoan;
 import DAO.DAO_Thongtingiaovu;
 import POJO.Taikhoan;
 import POJO.Thongtingiaovu;
-
 import java.sql.Date;
 import java.util.List;
 
@@ -62,29 +62,23 @@ public class BUS_GiaoVu {
         thongTinMoi.setEmail(email);
         return DAO_Thongtingiaovu.updateRecord(thongTinMoi.getIdGiaoVu(),thongTinMoi);
     }
-    public static int timChiSoBangTenDangNhap(String tenDangNhap)
+    public static String timIdBangTenDangNhap(String tenDangNhap)
     {
         Taikhoan taikhoan = DAO_TaiKhoan.findTaiKhoanByUserName(tenDangNhap);
         if(taikhoan==null)
         {
-            return -1;
+            return null;
         }
-        String id = taikhoan.getIdTaiKhoan();
-        Thongtingiaovu giaoVu = DAO_Thongtingiaovu.findThongTinGiaoVuById(id);
-        if(giaoVu==null)
+        return taikhoan.getIdTaiKhoan();
+    }
+    public static int resetMatKhau(String tenDangNhap)
+    {
+        Taikhoan taikhoan = DAO_TaiKhoan.findTaiKhoanByUserName(tenDangNhap);
+        if(taikhoan==null)
         {
-            return -1;
+            return Code.TEN_DANG_NHAP_KHONG_TON_TAI;
         }
-        List<Thongtingiaovu> dsGiaoVu = danhSachGiaoVu();
-        int i = 0;
-        for(Thongtingiaovu thongtingiaovu: dsGiaoVu)
-        {
-            if(thongtingiaovu.getIdGiaoVu().equals(giaoVu.getIdGiaoVu()))
-            {
-                return i;
-            }
-            i++;
-        }
-        return -1;
+        String matKhauCu = taikhoan.getMatKhau();
+        return DAO_TaiKhoan.updatePassword(tenDangNhap,taikhoan.getMatKhau(),tenDangNhap);
     }
 }

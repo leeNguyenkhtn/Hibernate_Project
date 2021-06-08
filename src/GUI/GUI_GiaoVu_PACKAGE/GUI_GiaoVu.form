@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="GUI.GUI_GiaoVu">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="GUI.GUI_GiaoVu_PACKAGE.GUI_GiaoVu">
   <grid id="27dc6" binding="chucNangGVPanel" layout-manager="GridBagLayout">
     <constraints>
       <xy x="150" y="20" width="602" height="445"/>
@@ -15,54 +15,6 @@
         <properties/>
         <border type="none"/>
         <children>
-          <grid id="4b379" binding="sinhVienPanel" layout-manager="GridBagLayout">
-            <constraints>
-              <card name="Card2"/>
-            </constraints>
-            <properties/>
-            <border type="none"/>
-            <children/>
-          </grid>
-          <grid id="9b15d" binding="hocKiPanel" layout-manager="GridBagLayout">
-            <constraints>
-              <card name="Card3"/>
-            </constraints>
-            <properties/>
-            <border type="none"/>
-            <children/>
-          </grid>
-          <grid id="719d2" binding="monHocPanel" layout-manager="GridBagLayout">
-            <constraints>
-              <card name="Card4"/>
-            </constraints>
-            <properties/>
-            <border type="none"/>
-            <children/>
-          </grid>
-          <grid id="13ec3" binding="lopHocPanel" layout-manager="GridBagLayout">
-            <constraints>
-              <card name="Card5"/>
-            </constraints>
-            <properties/>
-            <border type="none"/>
-            <children/>
-          </grid>
-          <grid id="98436" binding="dangKiHocPhanPanel" layout-manager="GridBagLayout">
-            <constraints>
-              <card name="Card6"/>
-            </constraints>
-            <properties/>
-            <border type="none"/>
-            <children/>
-          </grid>
-          <grid id="473cc" binding="hocPhanHienTaiPanel" layout-manager="GridBagLayout">
-            <constraints>
-              <card name="Card7"/>
-            </constraints>
-            <properties/>
-            <border type="none"/>
-            <children/>
-          </grid>
           <grid id="30668" binding="giaoVuPanel" layout-manager="GridBagLayout">
             <constraints>
               <card name="Card8"/>
