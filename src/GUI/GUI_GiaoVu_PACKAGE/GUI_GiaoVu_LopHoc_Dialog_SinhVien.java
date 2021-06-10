@@ -1,7 +1,7 @@
 package GUI.GUI_GiaoVu_PACKAGE;
 
 import BUS.BUS_LopHoc;
-import POJO.Lophoc;
+import CONST_CODE.Code;
 import POJO.Sinhvien;
 
 import javax.swing.*;
@@ -9,16 +9,16 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
 import java.util.List;
 
-public class GUI_GiaoVu_Lop_Dialog_SinhVien extends JDialog {
+public class GUI_GiaoVu_LopHoc_Dialog_SinhVien extends JDialog {
     private JPanel contentPane;
     private JButton themButton;
     private JTable sinhVienTable;
     DefaultTableModel model = new DefaultTableModel();
     final int rowHeight = 25;
-    String tenLopHoc;
+    String idLopHoc;
 
-    public GUI_GiaoVu_Lop_Dialog_SinhVien(String tenLopHoc) {
-        this.tenLopHoc = tenLopHoc;
+    public GUI_GiaoVu_LopHoc_Dialog_SinhVien(String idLopHoc) {
+        this.idLopHoc = idLopHoc;
         setContentPane(contentPane);
         setModal(true);
         setSize(800,450);
@@ -41,8 +41,35 @@ public class GUI_GiaoVu_Lop_Dialog_SinhVien extends JDialog {
     }
 
     private void onThem() {
-        // add your code here
-        dispose();
+       String mssv = JOptionPane.showInputDialog(this,"Nhap MSSV","Them sinh vien",
+                JOptionPane.INFORMATION_MESSAGE);
+       int state = BUS_LopHoc.themSinhVienVaoLopHoc(mssv,idLopHoc);
+       if(state== Code.THANH_CONG)
+       {
+           JOptionPane.showMessageDialog(this,"Them sinh vien thanh cong",
+                                        "",JOptionPane.INFORMATION_MESSAGE);
+           updateTableRow();
+       }
+       else if(state == Code.KHONG_DUOC_BO_TRONG)
+       {
+           JOptionPane.showMessageDialog(this,"Khong duoc bo trong",
+                   "",JOptionPane.WARNING_MESSAGE);
+       }
+       else if(state==Code.BI_TRUNG)
+       {
+           JOptionPane.showMessageDialog(this,"Sinh vien da thuoc lop hoc khac",
+                   "",JOptionPane.WARNING_MESSAGE);
+       }
+       else if(state == Code.DOI_TUONG_KHONG_TON_TAI)
+       {
+           JOptionPane.showMessageDialog(this,"Sinh vien khong ton tai",
+                   "",JOptionPane.WARNING_MESSAGE);
+       }
+       else
+       {
+           JOptionPane.showMessageDialog(this,"Them sinh vien that bai",
+                   "",JOptionPane.ERROR_MESSAGE);
+       }
     }
 
     private void onCancel() {
@@ -58,7 +85,7 @@ public class GUI_GiaoVu_Lop_Dialog_SinhVien extends JDialog {
 
     }
     void updateTableRow() {
-        List<Sinhvien> dsSinhVien = BUS_LopHoc.danhSachSinhVien(tenLopHoc);
+        List<Sinhvien> dsSinhVien = BUS_LopHoc.danhSachSinhVien(idLopHoc);
         int i = model.getRowCount();
         for (i = i - 1; i >= 0; i--)
         {

@@ -2,6 +2,7 @@ package POJO;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,7 +10,7 @@ import java.util.Objects;
 public class Hocki {
     private String idHocKi;
     private String tenHocKi;
-    private int namHoc;
+    private String namHoc;
     private Date ngayBatDau;
     private Date ngayKetThuc;
     private int trangThai;
@@ -36,11 +37,11 @@ public class Hocki {
 
     @Basic
     @Column(name = "namHoc", nullable = false)
-    public int getNamHoc() {
+    public String getNamHoc() {
         return namHoc;
     }
 
-    public void setNamHoc(int namHoc) {
+    public void setNamHoc(String namHoc) {
         this.namHoc = namHoc;
     }
 
@@ -74,12 +75,12 @@ public class Hocki {
         this.trangThai = trangThai;
     }
 
-    @OneToMany(targetEntity = Kydangkihocphan.class,fetch = FetchType.LAZY,mappedBy = "hocKi")
-    public List<Kydangkihocphan> getDsLopDangKiHocPhan()
+    @OneToMany(mappedBy = "hocKi")
+    public List<Kydangkihocphan> getDsKyDangKiHocPhan()
     {
         return dsKyDangKiHocPhan;
     }
-    public  void setDsLopDangKiHocPhan(List<Kydangkihocphan> dsLopDangKiHocPhan)
+    public  void setDsKyDangKiHocPhan(List<Kydangkihocphan> dsLopDangKiHocPhan)
     {
         this.dsKyDangKiHocPhan = dsLopDangKiHocPhan;
     }
@@ -94,5 +95,11 @@ public class Hocki {
     @Override
     public int hashCode() {
         return Objects.hash(idHocKi, tenHocKi, namHoc, ngayBatDau, ngayKetThuc, trangThai);
+    }
+
+    private Collection<Kydangkihocphan> dsLopDangKiHocPhan;
+
+    public void setDsLopDangKiHocPhan(Collection<Kydangkihocphan> dsLopDangKiHocPhan) {
+        this.dsLopDangKiHocPhan = dsLopDangKiHocPhan;
     }
 }

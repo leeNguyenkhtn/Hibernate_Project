@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="GUI.GUI_GiaoVu_PACKAGE.GUI_LopDangKiHocPhan">
+  <grid id="27dc6" binding="lopDangKiHocPhanPanel" layout-manager="GridBagLayout">
+    <constraints>
+      <xy x="20" y="20" width="500" height="415"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="66e3d" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="1.0" weighty="10.0"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="d74d2" class="javax.swing.JTable" binding="lopDangKiHocPhanTable">
+            <constraints border-constraint="Center"/>
+            <properties/>
+          </component>
+        </children>
+      </grid>
+      <grid id="49b5e" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="4" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="1.0" weighty="0.5"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="98b1e" class="javax.swing.JButton" binding="themButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <text value="Them"/>
+            </properties>
+          </component>
+          <component id="f3bae" class="javax.swing.JButton" binding="xoaButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Xoa"/>
+            </properties>
+          </component>
+          <component id="c025f" class="javax.swing.JButton" binding="xemDsSVButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Xem dsSV"/>
+            </properties>
+          </component>
+          <component id="fe5c4" class="javax.swing.JButton" binding="timKiemButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Tim kiem"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

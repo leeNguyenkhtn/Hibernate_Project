@@ -2,6 +2,7 @@ package BUS;
 
 import CONST_CODE.Code;
 import DAO.DAO_LopHoc;
+import DAO.DAO_SinhVien;
 import POJO.Lophoc;
 import POJO.Sinhvien;
 
@@ -12,6 +13,19 @@ public class BUS_LopHoc {
     private static void capNhatDanhSachLopHoc()
     {
         danhSachLopHoc = DAO_LopHoc.displayRecord();
+    }
+    public static int themSinhVienVaoLopHoc(String maSoSV,String idLopHoc)
+    {
+        if(idLopHoc == null||maSoSV==null)
+        {
+            return Code.KHONG_DUOC_BO_TRONG;
+        }
+        String idSinhVien = DAO_SinhVien.getIdSinhVienByMSSV(maSoSV);
+        if(idSinhVien!=null)
+        {
+            return DAO_SinhVien.setLopHoc(idSinhVien,idLopHoc);
+        }
+        return Code.DOI_TUONG_KHONG_TON_TAI;
     }
     public static int themLopHoc(String tenLopHoc)
     {
@@ -53,12 +67,12 @@ public class BUS_LopHoc {
         }
         return  state;
     }
-    public static List<Sinhvien> danhSachSinhVien(String tenLopHoc)
+    public static List<Sinhvien> danhSachSinhVien(String idLopHoc)
     {
-        if(tenLopHoc==null)
+        if(idLopHoc==null)
         {
             return null;
         }
-        return DAO_LopHoc.getListSinhVienByTenLopHoc(tenLopHoc);
+        return DAO_LopHoc.getListSinhVien(idLopHoc);
     }
 }

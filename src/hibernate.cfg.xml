@@ -19,7 +19,7 @@
         <mapping class="POJO.Monhoc"/>
         <mapping class="POJO.Hocki"/>
         <mapping class="POJO.Sinhviendangkihocphan"/>
-
+        <mapping class="POJO.Kydangkihocphan"/>
 
     </session-factory>
 </hibernate-configuration>

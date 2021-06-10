@@ -1,28 +1,30 @@
 package POJO;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
 public class Lopdangkihocphan {
-    private String idLopDangKiHopPhan;
+    private String idLopDangKiHocPhan;
     private String giaoVienLiThuyet;
     private String tenPhongHoc;
-    private int buoiHoc;
-    private int caHoc;
+    private String buoiHoc;
+    private String caHoc;
     private int siSo;
     private int soLuongDaDangKy;
     private Monhoc monHoc;
     private Lophoc lopHoc;
+    private List<Sinhvien> danhSachSinhVienTrongLop;
     private Kydangkihocphan kyDangKiHocPhan;
     @Id
-    @Column(name = "idLopDangKiHopPhan", nullable = false, length = 12)
-    public String getIdLopDangKiHopPhan() {
-        return idLopDangKiHopPhan;
+    @Column(name = "idLopDangKiHocPhan", nullable = false, length = 12)
+    public String getIdLopDangKiHocPhan() {
+        return idLopDangKiHocPhan;
     }
 
-    public void setIdLopDangKiHopPhan(String idLopDangKiHopPhan) {
-        this.idLopDangKiHopPhan = idLopDangKiHopPhan;
+    public void setIdLopDangKiHocPhan(String idLopDangKiHopPhan) {
+        this.idLopDangKiHocPhan = idLopDangKiHopPhan;
     }
 
     @Basic
@@ -47,21 +49,21 @@ public class Lopdangkihocphan {
 
     @Basic
     @Column(name = "buoiHoc", nullable = false)
-    public int getBuoiHoc() {
+    public String getBuoiHoc() {
         return buoiHoc;
     }
 
-    public void setBuoiHoc(int buoiHoc) {
+    public void setBuoiHoc(String buoiHoc) {
         this.buoiHoc = buoiHoc;
     }
 
     @Basic
     @Column(name = "caHoc", nullable = false)
-    public int getCaHoc() {
+    public String getCaHoc() {
         return caHoc;
     }
 
-    public void setCaHoc(int caHoc) {
+    public void setCaHoc(String caHoc) {
         this.caHoc = caHoc;
     }
 
@@ -90,29 +92,35 @@ public class Lopdangkihocphan {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Lopdangkihocphan that = (Lopdangkihocphan) o;
-        return siSo == that.siSo && soLuongDaDangKy == that.soLuongDaDangKy && Objects.equals(idLopDangKiHopPhan, that.idLopDangKiHopPhan) && Objects.equals(giaoVienLiThuyet, that.giaoVienLiThuyet) && Objects.equals(tenPhongHoc, that.tenPhongHoc) && Objects.equals(buoiHoc, that.buoiHoc) && Objects.equals(caHoc, that.caHoc);
+        return siSo == that.siSo && soLuongDaDangKy == that.soLuongDaDangKy && Objects.equals(idLopDangKiHocPhan, that.idLopDangKiHocPhan) && Objects.equals(giaoVienLiThuyet, that.giaoVienLiThuyet) && Objects.equals(tenPhongHoc, that.tenPhongHoc) && Objects.equals(buoiHoc, that.buoiHoc) && Objects.equals(caHoc, that.caHoc);
     }
-
     @Override
     public int hashCode() {
-        return Objects.hash(idLopDangKiHopPhan, giaoVienLiThuyet, tenPhongHoc, buoiHoc, caHoc, siSo, soLuongDaDangKy);
+        return Objects.hash(idLopDangKiHocPhan, giaoVienLiThuyet, tenPhongHoc, buoiHoc, caHoc, siSo, soLuongDaDangKy);
     }
 
+    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "danhSachDangKiHocPhan")
+    public List<Sinhvien> getDanhSachSinhVienTrongLop() {
+        return danhSachSinhVienTrongLop;
+    }
+    public void setDanhSachSinhVienTrongLop(List<Sinhvien> danhSachSinhVienTrongLop) {
+        this.danhSachSinhVienTrongLop = danhSachSinhVienTrongLop;
+    }
     @ManyToOne
-    @JoinColumn(name="MonHoc_idMonHoc",referencedColumnName = "idMonHoc",nullable = false)
+    @JoinColumn(name="MonHoc_idMonHoc",referencedColumnName = "idMonHoc")
     public Monhoc getMonHoc(){ return monHoc;}
     public void setMonHoc(Monhoc idMonHoc){
         this.monHoc = idMonHoc;
     }
     @ManyToOne
-    @JoinColumn(name = "LopHoc_idLopHoc",referencedColumnName = "idLopHoc",nullable = false)
+    @JoinColumn(name = "LopHoc_idLopHoc",referencedColumnName = "idLopHoc")
     public Lophoc getLopHoc(){ return lopHoc;}
     public void setLopHoc(Lophoc idlopHoc) {
         this.lopHoc = idlopHoc;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="KyDangKiHocPhan_idKyDangKiHocPhan")
+    @JoinColumn(name="KyDangKiHocPhan_idKyDangKiHocPhan",referencedColumnName = "idKyDangKiHocPhan")
     public Kydangkihocphan getKyDangKiHocPhan() {
         return kyDangKiHocPhan;
     }

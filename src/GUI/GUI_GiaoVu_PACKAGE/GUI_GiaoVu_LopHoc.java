@@ -58,8 +58,8 @@ public class GUI_GiaoVu_LopHoc extends JPanel{
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 int i = lopHocTable.getSelectedRow();
-                String tenMonHoc = (String) lopHocTable.getValueAt(i,0);
-                GUI_GiaoVu_Lop_Dialog_SinhVien dialog_sinhVien = new GUI_GiaoVu_Lop_Dialog_SinhVien(tenMonHoc);
+                String idLopHoc = BUS_LopHoc.danhSachLopHoc.get(i).getIdLopHoc();
+                GUI_GiaoVu_LopHoc_Dialog_SinhVien dialog_sinhVien = new GUI_GiaoVu_LopHoc_Dialog_SinhVien(idLopHoc);
 
             }
         });

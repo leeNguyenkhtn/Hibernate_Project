@@ -2,6 +2,7 @@ package POJO;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -15,6 +16,7 @@ public class Sinhvien {
     private String diaChi;
     private String soDienThoai;
     private Taikhoan taiKhoan;
+    private List<Lopdangkihocphan> danhSachDangKiHocPhan;
     private Lophoc lopHoc;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "LopHoc_idLopHoc")
@@ -105,6 +107,17 @@ public class Sinhvien {
         return taiKhoan;
     }
 
+    @ManyToMany(cascade = {CascadeType.ALL},fetch = FetchType.LAZY)
+    @JoinTable(name="Sinhviendangkihocphan",
+                joinColumns = {@JoinColumn(name = "sinhvien_idSinhVien",referencedColumnName = "idSinhVien")},
+                inverseJoinColumns = {@JoinColumn(name = "LopDangKiHocPhan_idLopDangKiHocPhan",referencedColumnName = "idLopDangKiHocPhan")})
+    public List<Lopdangkihocphan> getDanhSachDangKiHocPhan() {
+        return danhSachDangKiHocPhan;
+    }
+
+    public void setDanhSachDangKiHocPhan(List<Lopdangkihocphan> danhSachDangKiHopPhan) {
+        this.danhSachDangKiHocPhan = danhSachDangKiHopPhan;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

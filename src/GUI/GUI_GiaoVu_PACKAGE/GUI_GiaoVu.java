@@ -21,8 +21,8 @@ public class GUI_GiaoVu extends JFrame {
     private JPanel hocKiPanel;
     private JPanel monHocPanel;
     private JPanel lopHocPanel;
-    private JPanel dangKiHocPhanPanel;
-    private JPanel hocPhanHienTaiPanel;
+    private JPanel cacKyDangKiHocPhanPanel;
+    private JPanel kyDangKiHocPhanHienTaiPanel;
     private JPanel chucNangGVPanel;
     private JPanel giaoVuPanel;
     private JTable danhSachGVTable;
@@ -43,12 +43,11 @@ public class GUI_GiaoVu extends JFrame {
     private JTextField tenDangNhapTF;
     private JButton themMoiButton;
     final static String giaoVu = "Giao Vu";
-    final static String sinhVien = "Sinh Vien";
     final static String monHoc = "Mon Hoc";
     final static String lopHoc = "Lop Hoc";
     final static String hocKi = "Hoc Ki";
-    final static String hocPhanHienTai = "Hoc Ki Hien Tai";
-    final static String dangKyHocPhan = "Dang Ky Hoc Phan";
+    final static String kyDangKiHocPhanHienTai = "Ky Dang Ki Hoc Phan Hien Tai";
+    final static String cacKyDangKiHocPhan = "Cac Ky Dang Ki Hoc Phan";
     final static int maxColumnOfGiaoVuTable = 6;
     final static int size = 14;
     final static int rowHeight = 25;
@@ -57,7 +56,7 @@ public class GUI_GiaoVu extends JFrame {
         createComboBox();
         createTable();
         add(chucNangGVPanel);
-        setSize(600, 650);
+        setSize(950, 650);
         setTitle("Giao vu");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //tao panel xuat hien dau tien cua card layout
@@ -75,7 +74,12 @@ public class GUI_GiaoVu extends JFrame {
                     giaoVuCardLayout.add(lopHocPanel, lopHoc);
                     break;
                 case hocKi:
+                    hocKiPanel = new GUI_GiaoVu_HocKi();
+                    giaoVuCardLayout.add(hocKiPanel,hocKi);
                     break;
+                case kyDangKiHocPhanHienTai:
+                    kyDangKiHocPhanHienTaiPanel = new GUI_LopDangKiHocPhan();
+                    giaoVuCardLayout.add(kyDangKiHocPhanHienTaiPanel,kyDangKiHocPhanHienTai);
                 default:
                     break;
             }
@@ -139,7 +143,7 @@ public class GUI_GiaoVu extends JFrame {
     }
 
     private void createComboBox() {
-        String[] comboBoxItems = {giaoVu, sinhVien, monHoc, lopHoc, hocKi, hocPhanHienTai, dangKyHocPhan};
+        String[] comboBoxItems = {giaoVu, monHoc, lopHoc, hocKi, kyDangKiHocPhanHienTai, cacKyDangKiHocPhan};
         for (String str : comboBoxItems) {
             chucNangCB.addItem(str);
         }

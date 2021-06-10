@@ -8,11 +8,20 @@ public class Kydangkihocphan {
 
 
     private String idKyDangKiHocPhan;
-    private String idHocKi;
     private Date ngayBatDau;
     private Date ngayKetThuc;
     private List<Lopdangkihocphan> dsLopDangKiHocPhan;
     private Hocki hocKi;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="idHocKi",referencedColumnName = "idHocKi")
+    public Hocki getHocKi() {
+        return hocKi;
+    }
+
+    public void setHocKi(Hocki hocKi) {
+        this.hocKi = hocKi;
+    }
+
     @Id
     @Column(name = "idKyDangKiHocPhan",nullable = false,length = 12)
     public String getIdKyDangKiHocPhan() {
@@ -20,14 +29,6 @@ public class Kydangkihocphan {
     }
     public void setIdKyDangKiHocPhan(String idKyDangKiHocPhan) {
         this.idKyDangKiHocPhan = idKyDangKiHocPhan;
-    }
-    @Basic
-    @Column(name = "idHocKi",length = 12)
-    public String getIdHocKi() {
-        return idHocKi;
-    }
-    public void setIdHocKi(String idHocKi) {
-        this.idHocKi = idHocKi;
     }
     @Basic
     @Column(name="ngayBatDau",nullable = false)
@@ -57,11 +58,11 @@ public class Kydangkihocphan {
         if (this == o) return true;
         if (!(o instanceof Kydangkihocphan)) return false;
         Kydangkihocphan that = (Kydangkihocphan) o;
-        return getIdKyDangKiHocPhan().equals(that.getIdKyDangKiHocPhan()) && Objects.equals(getIdHocKi(), that.getIdHocKi()) && getNgayBatDau().equals(that.getNgayBatDau()) && getNgayKetThuc().equals(that.getNgayKetThuc());
+        return getIdKyDangKiHocPhan().equals(that.getIdKyDangKiHocPhan())  && getNgayBatDau().equals(that.getNgayBatDau()) && getNgayKetThuc().equals(that.getNgayKetThuc());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getIdKyDangKiHocPhan(), getIdHocKi(), getNgayBatDau(), getNgayKetThuc());
+        return Objects.hash(getIdKyDangKiHocPhan(), getNgayBatDau(), getNgayKetThuc());
     }
 }

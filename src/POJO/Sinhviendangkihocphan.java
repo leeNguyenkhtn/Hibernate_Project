@@ -53,7 +53,7 @@ public class Sinhviendangkihocphan {
     }
 
     @ManyToOne
-    @JoinColumn(name = "LopDangKiHocPhan_idLopDangKiHopPhan", referencedColumnName = "idLopDangKiHopPhan", nullable = false)
+    @JoinColumn(name = "LopDangKiHocPhan_idLopDangKiHocPhan", referencedColumnName = "idLopDangKiHocPhan", nullable = false)
     public Lopdangkihocphan getLopdangkihocphanByLopDangKiHocPhanIdLopDangKiHopPhan() {
         return lopdangkihocphanByLopDangKiHocPhanIdLopDangKiHopPhan;
     }
