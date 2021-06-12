@@ -2,6 +2,7 @@ package GUI;
 
 import javax.swing.*;
 import BUS.BUS_TaiKhoan;
+import GUI.GUI_GiaoVu_PACKAGE.GUI_GiaoVu;
 import GUI_SinhVien_PACKAGE.GUI_SinhVien;
 
 import java.awt.*;
@@ -22,6 +23,7 @@ public class GUI_Login extends JFrame{
         add(loginPanel);
         setTitle("QLDKHP");
         setSize(450,350);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         login_btn.addActionListener(e -> {
             String matKhau = new String(passwordField.getPassword());
             String tenDangNhap = usernameTextField.getText();
@@ -37,6 +39,8 @@ public class GUI_Login extends JFrame{
                 {
                     idGiaoVu = BUS_TaiKhoan.findIdByTenDangNhap(tenDangNhap);
                     SwingUtilities.invokeLater(() -> this.setVisible(false));
+                    GUI_GiaoVu gui_giaoVu = new GUI_GiaoVu();
+                    SwingUtilities.invokeLater(() -> gui_giaoVu.setVisible(true));
                 }
                 else {
                     JOptionPane.showMessageDialog(loginPanel, message);

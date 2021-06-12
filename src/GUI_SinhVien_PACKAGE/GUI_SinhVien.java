@@ -1,6 +1,7 @@
 package GUI_SinhVien_PACKAGE;
 
 import BUS.BUS_SinhVien;
+import GUI.GUI_Login;
 import POJO.Sinhvien;
 
 import javax.swing.*;
@@ -49,7 +50,12 @@ public class GUI_SinhVien extends JFrame{
             CardLayout cardLayout = (CardLayout) sinhVienCardLayout.getLayout();
             cardLayout.show(sinhVienCardLayout,dangKyCard);
         });
-        dangXuatButton.addActionListener(e -> dispose());
+        dangXuatButton.addActionListener(e ->{
+            dispose();
+            GUI_Login newLoggingSession = new GUI_Login();
+            newLoggingSession.setTitle("Dang Nhap");
+            SwingUtilities.invokeLater(() -> newLoggingSession.setVisible(true));}
+        );
     }
     public void loadThongTin(Sinhvien sinhvien)
     {

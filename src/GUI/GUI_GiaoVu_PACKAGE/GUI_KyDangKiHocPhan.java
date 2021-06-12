@@ -82,8 +82,7 @@ public class GUI_KyDangKiHocPhan extends JPanel {
         if(BUS_KyDangKiHocPhan.kyDangKyHocPhanHienTai!=null)
         {
             idKyDangKyHocPhanHienTai = BUS_KyDangKiHocPhan.kyDangKyHocPhanHienTai.getIdKyDangKiHocPhan();
-        }
-        for (Kydangkihocphan kydangkihocphan: BUS_KyDangKiHocPhan.danhSachKyDangKiHocPhan()) {
+            for (Kydangkihocphan kydangkihocphan: BUS_KyDangKiHocPhan.danhSachKyDangKiHocPhan()) {
                 Object[] row = new Object[5];
                 if(kydangkihocphan.getIdKyDangKiHocPhan().equals(idKyDangKyHocPhanHienTai))
                 {
@@ -98,6 +97,8 @@ public class GUI_KyDangKiHocPhan extends JPanel {
                 row[3] = kydangkihocphan.getNgayKetThuc();
                 model.addRow(row);
             }
+        }
+
 
     }
     void setEmpty()

@@ -1,6 +1,7 @@
 package GUI.GUI_GiaoVu_PACKAGE;
 
 import BUS.BUS_GiaoVu;
+import GUI.GUI_Login;
 import POJO.Thongtingiaovu;
 
 import javax.swing.*;
@@ -60,6 +61,16 @@ public class GUI_GiaoVu extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //tao panel xuat hien dau tien cua card layout
         giaoVuCardLayout.add(giaoVuPanel, giaoVu);
+        //
+        dangXuatButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                GUI_Login newLoggingSession = new GUI_Login();
+                newLoggingSession.setTitle("Dang Nhap");
+                SwingUtilities.invokeLater(() -> newLoggingSession.setVisible(true));
+            }
+        });
         //
         chucNangCB.addItemListener(e -> {
             switch ((String)e.getItem())
@@ -301,12 +312,5 @@ public class GUI_GiaoVu extends JFrame {
             }
             JOptionPane.showMessageDialog(chucNangGVPanel, "Mat khau moi la: " + tenDangNhap);
         });
-    }
-
-    public static void main(String[] args) throws UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException {
-        setUIFont(new javax.swing.plaf.FontUIResource("Arial", Font.PLAIN, size));
-        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        GUI_GiaoVu giaovu = new GUI_GiaoVu();
-        SwingUtilities.invokeLater(() -> giaovu.setVisible(true));
     }
 }
