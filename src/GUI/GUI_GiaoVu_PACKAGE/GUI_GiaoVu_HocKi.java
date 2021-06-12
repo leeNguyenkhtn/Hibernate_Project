@@ -20,7 +20,7 @@ public class GUI_GiaoVu_HocKi extends JPanel {
     private JButton themButton;
     private JTextField namHocTF;
     private JTextField ngayBatDauTF;
-    private JComboBox tenHocKiCB;
+    private JComboBox<String> tenHocKiCB;
     private JTextField thangBatDauTF;
     private JTextField namBatDauTF;
     private JTextField ngayKetThucTF;
@@ -28,6 +28,7 @@ public class GUI_GiaoVu_HocKi extends JPanel {
     private JTextField namKetThucTF;
     private JTable hocKiTable;
     private JPanel hocKiPanel;
+    private JButton taiLaiButton;
     DefaultTableModel model = new DefaultTableModel();
     final int rowHeight = 25;
     final String hocKi_1 = "HK1";
@@ -60,12 +61,17 @@ public class GUI_GiaoVu_HocKi extends JPanel {
                 String ngayKetThuc = ngayKetThucTF.getText();
                 String thangKetThuc = thangKetThucTF.getText();
                 String namKetThuc = namKetThucTF.getText();
-                if(BUS_HocKi.themHocKi(tenHocKi,namHoc,ngayBatDau,
-                        thangBatDau,namBatDau,ngayKetThuc,thangKetThuc,namKetThuc)== Code.THANH_CONG)
+                int state = BUS_HocKi.themHocKi(tenHocKi,namHoc,ngayBatDau,
+                        thangBatDau,namBatDau,ngayKetThuc,thangKetThuc,namKetThuc);
+                if(state== Code.THANH_CONG)
                 {
                     updateTable();
                     setEmpty();
                     JOptionPane.showMessageDialog(hocKiPanel, "Them hoc ki thanh cong ","",JOptionPane.INFORMATION_MESSAGE);
+                }
+                else if (state==Code.TRUOC_NGAY_HIEN_TAI)
+                {
+                    JOptionPane.showMessageDialog(hocKiPanel, "Ngay ket thuc dien ra truoc ngay hien tai","",JOptionPane.WARNING_MESSAGE);
                 }
                 else
                 {
@@ -101,10 +107,19 @@ public class GUI_GiaoVu_HocKi extends JPanel {
                 int i = hocKiTable.getSelectedRow();
                 if(i>=0)
                 {
-                    if(BUS_HocKi.setHocKiHienTai(i)==Code.THANH_CONG)
+                    int state = BUS_HocKi.setHocKiHienTai(i);
+                    if(state==Code.THANH_CONG)
                     {
                         JOptionPane.showMessageDialog(hocKiPanel, "Chon hoc ki hien tai thanh cong ","",JOptionPane.INFORMATION_MESSAGE);
                         updateTable();
+                    }
+                    else if (state==Code.TRUOC_NGAY_HIEN_TAI)
+                    {
+                        JOptionPane.showMessageDialog(hocKiPanel, "Ngay ket thuc dien ra truoc ngay hien tai","",JOptionPane.WARNING_MESSAGE);
+                    }
+                    else if (state==Code.SAU_NGAY_HIEN_TAI)
+                    {
+                        JOptionPane.showMessageDialog(hocKiPanel, "Ngay bat dau dien ra sau ngay hien tai","",JOptionPane.WARNING_MESSAGE);
                     }
                     else
                     {

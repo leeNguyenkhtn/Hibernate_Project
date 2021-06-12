@@ -1,9 +1,7 @@
 package DAO;
 
 import CONST_CODE.Code;
-import POJO.Lopdangkihocphan;
-import POJO.Lophoc;
-import POJO.Sinhvien;
+import POJO.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -14,6 +12,7 @@ import javax.persistence.EntityGraph;
 import javax.persistence.TypedQuery;
 import java.sql.Date;
 import java.util.List;
+import java.util.Set;
 
 public class DAO_LopDangKiHocPhan {
     public static int createRecord(Lopdangkihocphan lopdangkihocphan)
@@ -85,9 +84,9 @@ public class DAO_LopDangKiHocPhan {
         }
         return danhSachHocPhan;
     }
-    public static List<Sinhvien> listSinhVienInHocPhan(String idLopDangKiHocPhan)
+    public static List<Sinhviendangkihocphan> listSinhVienInHocPhan(String idLopDangKiHocPhan)
     {
-        List<Sinhvien> danhSachSV = null;
+        List<Sinhviendangkihocphan> danhSachSV = null;
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session= sessionFactory.getCurrentSession();
         Transaction tx = session.beginTransaction();
@@ -98,13 +97,15 @@ public class DAO_LopDangKiHocPhan {
                     "where hp.idLopDangKiHocPhan =: idLopDangKiHocPhan",Lopdangkihocphan.class)
                     .setParameter("idLopDangKiHocPhan",idLopDangKiHocPhan);
             EntityGraph<Lopdangkihocphan> entityGraph = session.createEntityGraph(Lopdangkihocphan.class);
-            entityGraph.addAttributeNodes("monHoc");
-            entityGraph.addSubgraph("danhSachSinhVienTrongLop");
+            //entityGraph.addAttributeNodes("monHoc");
+            entityGraph.addSubgraph("danhSachSinhVienDangKi").addAttributeNodes("sinhVien");
             query.setHint("javax.persistence.fetchgraph",entityGraph);
-            danhSachSV = query.getSingleResult().getDanhSachSinhVienTrongLop();
+            danhSachSV = query.getSingleResult().getDanhSachSinhVienDangKi();
+            tx.commit();
         }
         catch (Exception e)
         {
+            System.out.println(e);
             tx.rollback();
         }
         finally {
@@ -114,6 +115,10 @@ public class DAO_LopDangKiHocPhan {
     }
     public static void main(String[] args)
     {
-
+        List<Sinhviendangkihocphan> ds = listSinhVienInHocPhan("txQtym21JG5i");
+        for(Sinhviendangkihocphan sv:ds)
+        {
+            System.out.println(sv.getSinhVien().getMssv());
+        }
     }
 }

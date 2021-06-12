@@ -13,6 +13,7 @@ public class GUI_GiaoVu_LopHoc_Dialog_SinhVien extends JDialog {
     private JPanel contentPane;
     private JButton themButton;
     private JTable sinhVienTable;
+    private JButton resetMKButton;
     DefaultTableModel model = new DefaultTableModel();
     final int rowHeight = 25;
     String idLopHoc;
@@ -50,11 +51,6 @@ public class GUI_GiaoVu_LopHoc_Dialog_SinhVien extends JDialog {
                                         "",JOptionPane.INFORMATION_MESSAGE);
            updateTableRow();
        }
-       else if(state == Code.KHONG_DUOC_BO_TRONG)
-       {
-           JOptionPane.showMessageDialog(this,"Khong duoc bo trong",
-                   "",JOptionPane.WARNING_MESSAGE);
-       }
        else if(state==Code.BI_TRUNG)
        {
            JOptionPane.showMessageDialog(this,"Sinh vien da thuoc lop hoc khac",
@@ -65,7 +61,7 @@ public class GUI_GiaoVu_LopHoc_Dialog_SinhVien extends JDialog {
            JOptionPane.showMessageDialog(this,"Sinh vien khong ton tai",
                    "",JOptionPane.WARNING_MESSAGE);
        }
-       else
+       else if(state ==Code.THAT_BAI)
        {
            JOptionPane.showMessageDialog(this,"Them sinh vien that bai",
                    "",JOptionPane.ERROR_MESSAGE);

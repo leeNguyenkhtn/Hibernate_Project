@@ -3,12 +3,14 @@ package BUS;
 import CONST_CODE.Code;
 import DAO.DAO_HocKi;
 import POJO.Hocki;
+import utils.DateUtil;
 
 import java.sql.Date;
 import java.util.List;
 
 public class BUS_HocKi {
     public static List<Hocki> danhSachHocKi = DAO_HocKi.displayRecords();
+    public static Hocki hocKiHienTai = DAO_HocKi.getCurrentHocKi();
     public static void capNhatDanhSachHocKi()
     {
         danhSachHocKi = DAO_HocKi.displayRecords();
@@ -27,12 +29,12 @@ public class BUS_HocKi {
             hocki.setTrangThai(0);
         }catch (IllegalArgumentException e)
         {
-            System.out.println(e);
             return Code.THAT_BAI;
         }
         if(DAO_HocKi.createRecord(hocki)== Code.THANH_CONG)
         {
             capNhatDanhSachHocKi();
+            capNhatHocKiHienTai();
             return Code.THANH_CONG;
         }
         else
@@ -48,6 +50,7 @@ public class BUS_HocKi {
             if(DAO_HocKi.deleteRecord(idHocKi)==Code.THANH_CONG)
             {
                 capNhatDanhSachHocKi();
+                capNhatHocKiHienTai();
                 return Code.THANH_CONG;
             }
         }
@@ -62,17 +65,25 @@ public class BUS_HocKi {
                 return Code.DA_LA_HOC_KI_HIEN_TAI;
             }
             String idHocKi = danhSachHocKi.get(index).getIdHocKi();
+            if(DateUtil.CompareToToday(danhSachHocKi.get(index).getNgayKetThuc())==Code.TRUOC_NGAY_HIEN_TAI)
+            {
+                return Code.TRUOC_NGAY_HIEN_TAI;
+            }
+            if(DateUtil.CompareToToday(danhSachHocKi.get(index).getNgayBatDau())==Code.SAU_NGAY_HIEN_TAI)
+            {
+                return Code.SAU_NGAY_HIEN_TAI;
+            }
             if(DAO_HocKi.setStateRecord(idHocKi)==Code.THANH_CONG)
             {
                 capNhatDanhSachHocKi();
+                capNhatHocKiHienTai();
                 return Code.THANH_CONG;
             }
         }
         return Code.THAT_BAI;
     }
-    public static Hocki getHocKiHienTai()
+    public static void capNhatHocKiHienTai()
     {
-        return DAO_HocKi.getCurrentHocKi();
-
+        hocKiHienTai = DAO_HocKi.getCurrentHocKi();
     }
 }

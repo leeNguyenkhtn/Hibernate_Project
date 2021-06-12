@@ -8,7 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.Date;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Enumeration;
 
 import CONST_CODE.Code;
@@ -17,7 +17,6 @@ public class GUI_GiaoVu extends JFrame {
     private JButton dangXuatButton;
     private JComboBox<String> chucNangCB;
     private JPanel giaoVuCardLayout;
-    private JPanel sinhVienPanel;
     private JPanel hocKiPanel;
     private JPanel monHocPanel;
     private JPanel lopHocPanel;
@@ -41,7 +40,7 @@ public class GUI_GiaoVu extends JFrame {
     private JTextField namSinhTF;
     private JTextField matKhauTF;
     private JTextField tenDangNhapTF;
-    private JButton themMoiButton;
+    private JButton taiLaiButton;
     final static String giaoVu = "Giao Vu";
     final static String monHoc = "Mon Hoc";
     final static String lopHoc = "Lop Hoc";
@@ -51,7 +50,7 @@ public class GUI_GiaoVu extends JFrame {
     final static int maxColumnOfGiaoVuTable = 6;
     final static int size = 14;
     final static int rowHeight = 25;
-
+    DefaultTableModel model = new DefaultTableModel();
     public GUI_GiaoVu() {
         createComboBox();
         createTable();
@@ -80,6 +79,11 @@ public class GUI_GiaoVu extends JFrame {
                 case kyDangKiHocPhanHienTai:
                     kyDangKiHocPhanHienTaiPanel = new GUI_LopDangKiHocPhan();
                     giaoVuCardLayout.add(kyDangKiHocPhanHienTaiPanel,kyDangKiHocPhanHienTai);
+                    break;
+                case cacKyDangKiHocPhan:
+                    cacKyDangKiHocPhanPanel = new GUI_KyDangKiHocPhan();
+                    giaoVuCardLayout.add(cacKyDangKiHocPhanPanel,cacKyDangKiHocPhan);
+                    break;
                 default:
                     break;
             }
@@ -114,7 +118,7 @@ public class GUI_GiaoVu extends JFrame {
                 }
             }
         });
-        themMoiButton.addActionListener(new ActionListener() {
+        taiLaiButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 tenDangNhapTF.setText("");
@@ -127,9 +131,9 @@ public class GUI_GiaoVu extends JFrame {
                 soDienThoaTF.setText("");
                 emailTF.setText("");
                 danhSachGVTable.clearSelection();
+                updateTableRow();
             }
         });
-
     }
 
     //chinh lai font va size chu
@@ -148,23 +152,35 @@ public class GUI_GiaoVu extends JFrame {
             chucNangCB.addItem(str);
         }
     }
-    private void createTable() {
-        Object[] col = {"Ho va ten", "Ngay Sinh", "Gioi tinh", "So Dien Thoai", "Email", "Id"};
-        DefaultTableModel model = new DefaultTableModel();
+    void setUpTable()
+    {
+        Object[] col = {"Ho va ten", "Ngay Sinh", "Gioi tinh", "So Dien Thoai", "Email"};
+
         model.setColumnIdentifiers(col);
         danhSachGVTable.setModel(model);
         danhSachGVTable.setRowHeight(rowHeight);
-        ArrayList<Thongtingiaovu> dsGiaoVu = (ArrayList<Thongtingiaovu>) BUS_GiaoVu.danhSachGiaoVu();
+    }
+    void updateTableRow()
+    {
+        int i = danhSachGVTable.getRowCount();
+        for(i = i-1;i>=0;i--)
+        {
+            model.removeRow(i);
+        }
+        List<Thongtingiaovu> dsGiaoVu = BUS_GiaoVu.danhSachGiaoVu();
         for (Thongtingiaovu giaoVu : dsGiaoVu) {
-            Object[] row = new Object[6];
+            Object[] row = new Object[5];
             row[0] = giaoVu.getHoVaTen();
             row[1] = giaoVu.getNgaySinh();
             row[2] = giaoVu.getGioiTinh();
             row[3] = giaoVu.getSoDienThoai();
             row[4] = giaoVu.getEmail();
-            row[5] = giaoVu.getIdGiaoVu();
             model.addRow(row);
         }
+    }
+    private void createTable() {
+        setUpTable();
+        updateTableRow();
         themButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -193,7 +209,7 @@ public class GUI_GiaoVu extends JFrame {
                         JOptionPane.showMessageDialog(chucNangGVPanel, "Them giao vu that bai", "", JOptionPane.ERROR_MESSAGE);
                         break;
                     default:
-                        model.addRow(row);
+                        updateTableRow();
                         break;
                 }
             }
@@ -205,7 +221,8 @@ public class GUI_GiaoVu extends JFrame {
                 int i = danhSachGVTable.getSelectedRow();
                 if (i >= 0) {
                     if (BUS_GiaoVu.xoaGiaoVu(i)) {
-                        model.removeRow(i);
+                        updateTableRow();
+                        JOptionPane.showMessageDialog(chucNangGVPanel, "Xoa giao vu that bai", "", JOptionPane.INFORMATION_MESSAGE);
                     } else {
                         JOptionPane.showMessageDialog(chucNangGVPanel, "Xoa giao vu that bai", "", JOptionPane.ERROR_MESSAGE);
                     }
@@ -229,11 +246,7 @@ public class GUI_GiaoVu extends JFrame {
             int i = danhSachGVTable.getSelectedRow();
             if (i >= 0) {
                 if (BUS_GiaoVu.capNhatGiaoVu(i, hoVaTen, ngaySinh, gioiTinh, soDienThoai, email)) {
-                    model.setValueAt(hoVaTen, i, 0);
-                    model.setValueAt(ngaySinh, i, 1);
-                    model.setValueAt(gioiTinh, i, 2);
-                    model.setValueAt(soDienThoai, i, 3);
-                    model.setValueAt(email, i, 4);
+                    updateTableRow();
                 } else {
                     JOptionPane.showMessageDialog(chucNangGVPanel, "Cap nhat thong tin giao vu that bai", "", JOptionPane.ERROR_MESSAGE);
                 }
@@ -267,19 +280,14 @@ public class GUI_GiaoVu extends JFrame {
             String tenDangNhap = JOptionPane.showInputDialog(chucNangGVPanel, "Nhap ten dang nhap: ",
                     "Tim kiem giao vu", JOptionPane.INFORMATION_MESSAGE);
             if(tenDangNhap!=null) {
-                String id = BUS_GiaoVu.timIdBangTenDangNhap(tenDangNhap);
-                if (id != null) {
-                    for (int i = 0; i < danhSachGVTable.getRowCount(); i++) {
-                        if (id.equals(danhSachGVTable.getValueAt(i, maxColumnOfGiaoVuTable - 1))) {
-                            danhSachGVTable.setRowSelectionInterval(i, i);
-                            break;
-                        }
-                    }
-                } else {
+                int index = BUS_GiaoVu.timGiaoVuBangTenDangNhap(tenDangNhap);
+                if (index>=0) {
+                    danhSachGVTable.setRowSelectionInterval(index, index);
+                }
+                else {
                     JOptionPane.showMessageDialog(chucNangGVPanel, "Giao Vu khong ton tai", "", JOptionPane.ERROR_MESSAGE);
                 }
             }
-
         });
         //ResetMK
         resetMKButton.addActionListener(e -> {

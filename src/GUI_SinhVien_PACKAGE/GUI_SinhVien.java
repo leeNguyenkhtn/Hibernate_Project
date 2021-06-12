@@ -1,4 +1,4 @@
-package GUI;
+package GUI_SinhVien_PACKAGE;
 
 import BUS.BUS_SinhVien;
 import POJO.Sinhvien;
@@ -14,10 +14,8 @@ public class GUI_SinhVien extends JFrame{
     private JButton ketQuaButton;
     private JButton dangKyButton;
     private JButton doiMatKhauButton;
-    private JPanel noiDungPanel;
+    private JPanel sinhVienCardLayout;
     private JPanel dangKyPanel;
-    private JPanel ketQuaPanel;
-    private JPanel doiMatKhauPanel;
     private JButton thayDoiThongTinhButton;
     private JTextField hoVaTenTF;
     private JTextField ngaySinhTF;
@@ -26,24 +24,32 @@ public class GUI_SinhVien extends JFrame{
     private JRadioButton nuButton;
     private JTextField diaChiTF;
     private JTextField soDienThoaiTF;
-    private JLabel lopLabel;
     private JPanel thongTinPanel;
     private JButton dangXuatButton;
-
+    final String thongTinCard = "thongTinCard";
+    final String dangKyCard = "dangKyCard";
+    final String ketQuaCard = "ketQuaCard";
+    final String doiMatKhauCard = "doiMatKhauCard";
     public GUI_SinhVien(String idSinhVien)
     {
+        BUS_SinhVien bus_sinhVien = new BUS_SinhVien(idSinhVien);
+
         add(sinhVienPanel);
-        setSize(450,500);
+        setSize(950,650);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        thongTinButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Sinhvien sinhVien = BUS_SinhVien.loadSinhVienById(idSinhVien);
-                loadThongTin(sinhVien);
-                CardLayout cardLayout = (CardLayout) noiDungPanel.getLayout();
-                cardLayout.show(noiDungPanel,"thongTinCard");
-            }
+        thongTinButton.addActionListener(e -> {
+            Sinhvien sinhVien = BUS_SinhVien.loadSinhVienById(idSinhVien);
+            loadThongTin(sinhVien);
+            CardLayout cardLayout = (CardLayout) sinhVienCardLayout.getLayout();
+            cardLayout.show(sinhVienCardLayout,"thongTinCard");
         });
+        dangKyButton.addActionListener(e -> {
+            dangKyPanel = new GUI_SinhVien_DangKiHocPhan(bus_sinhVien);
+            sinhVienCardLayout.add(dangKyPanel,dangKyCard);
+            CardLayout cardLayout = (CardLayout) sinhVienCardLayout.getLayout();
+            cardLayout.show(sinhVienCardLayout,dangKyCard);
+        });
+        dangXuatButton.addActionListener(e -> dispose());
     }
     public void loadThongTin(Sinhvien sinhvien)
     {
@@ -60,6 +66,5 @@ public class GUI_SinhVien extends JFrame{
         }
         diaChiTF.setText(sinhvien.getDiaChi());
         soDienThoaiTF.setText(sinhvien.getSoDienThoai());
-        lopLabel.setText(sinhvien.getLopHoc().getTenLopHoc());
     }
 }

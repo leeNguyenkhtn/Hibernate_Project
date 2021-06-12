@@ -6,6 +6,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import utils.HibernateUtil;
 
+import javax.persistence.EntityGraph;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class DAO_Thongtingiaovu {
@@ -38,12 +40,15 @@ public class DAO_Thongtingiaovu {
         Transaction tx = session.beginTransaction();
         try
         {
-            dsGiaoVu = session.createQuery("select gv from Thongtingiaovu gv",Thongtingiaovu.class).list();
+            TypedQuery<Thongtingiaovu> query = session.createQuery("select gv from Thongtingiaovu gv",Thongtingiaovu.class);
+            EntityGraph<Thongtingiaovu> entityGraph = session.createEntityGraph(Thongtingiaovu.class);
+            entityGraph.addAttributeNodes("taiKhoan");
+            query.setHint("javax.persistence.fetchgraph",entityGraph);
+            dsGiaoVu = query.getResultList();
             tx.commit();
         }
         catch (Exception e)
         {
-            System.out.println(e);
             tx.rollback();
         }
         finally {

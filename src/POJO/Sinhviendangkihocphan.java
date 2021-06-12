@@ -1,67 +1,42 @@
 package POJO;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
+
 public class Sinhviendangkihocphan {
-
-    private SinhviendangkihocphanPK sinhviendangkihocphanPK;
-    private Sinhvien sinhvienBySinhvienIdSinhVien;
-    private Lopdangkihocphan lopdangkihocphanByLopDangKiHocPhanIdLopDangKiHopPhan;
-
-    /*@Id
-    @Column(name = "sinhvien_idSinhVien", nullable = false, length = 8)
-    public String getSinhvienIdSinhVien() {
-        return sinhvienIdSinhVien;
-    }
-
-    public void setSinhvienIdSinhVien(String sinhvienIdSinhVien) {
-        this.sinhvienIdSinhVien = sinhvienIdSinhVien;
-    }
-
-    @Id
-    @Column(name = "LopDangKiHocPhan_idLopDangKiHopPhan", nullable = false, length = 45)
-    public String getLopDangKiHocPhanIdLopDangKiHopPhan() {
-        return lopDangKiHocPhanIdLopDangKiHopPhan;
-    }
-
-    public void setLopDangKiHocPhanIdLopDangKiHopPhan(String lopDangKiHocPhanIdLopDangKiHopPhan) {
-        this.lopDangKiHocPhanIdLopDangKiHopPhan = lopDangKiHocPhanIdLopDangKiHopPhan;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Sinhviendangkihocphan that = (Sinhviendangkihocphan) o;
-        return Objects.equals(sinhvienIdSinhVien, that.sinhvienIdSinhVien) && Objects.equals(lopDangKiHocPhanIdLopDangKiHopPhan, that.lopDangKiHocPhanIdLopDangKiHopPhan);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(sinhvienIdSinhVien, lopDangKiHocPhanIdLopDangKiHopPhan);
-    }*/
-
-    @ManyToOne
-    @JoinColumn(name = "sinhvien_idSinhVien", referencedColumnName = "idSinhVien", nullable = false)
-    public Sinhvien getSinhvienBySinhvienIdSinhVien() {
-        return sinhvienBySinhvienIdSinhVien;
-    }
-
-    public void setSinhvienBySinhvienIdSinhVien(Sinhvien sinhvienBySinhvienIdSinhVien) {
-        this.sinhvienBySinhvienIdSinhVien = sinhvienBySinhvienIdSinhVien;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "LopDangKiHocPhan_idLopDangKiHocPhan", referencedColumnName = "idLopDangKiHocPhan", nullable = false)
-    public Lopdangkihocphan getLopdangkihocphanByLopDangKiHocPhanIdLopDangKiHopPhan() {
-        return lopdangkihocphanByLopDangKiHocPhanIdLopDangKiHopPhan;
-    }
-
-    public void setLopdangkihocphanByLopDangKiHocPhanIdLopDangKiHopPhan(Lopdangkihocphan lopdangkihocphanByLopDangKiHocPhanIdLopDangKiHopPhan) {
-        this.lopdangkihocphanByLopDangKiHocPhanIdLopDangKiHopPhan = lopdangkihocphanByLopDangKiHocPhanIdLopDangKiHopPhan;
-    }
     @EmbeddedId
+    private SinhviendangkihocphanPK sinhviendangkihocphanPK;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("idSinhVien")
+    @JoinColumn(name = "sinhvien_idSinhVien")
+    private Sinhvien sinhVien;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("idHocPhan")
+    @JoinColumn(name = "LopDangKiHocPhan_idLopDangKiHocPhan")
+    private Lopdangkihocphan hocPhan;
+
+    public Lopdangkihocphan getHocPhan()
+    {
+        return hocPhan;
+    }
+    public void setHocPhan(Lopdangkihocphan hocPhan) {
+        this.hocPhan = hocPhan;
+    }
+
+
+    private Date thoiGianDangKi;
+
+    @Basic
+    @Column(name = "thoigiandangki" ,nullable = false)
+    public Date getThoiGianDangKi() {
+        return thoiGianDangKi;
+    }
+    public void setThoiGianDangKi(Date thoiGianDangKi) {
+        this.thoiGianDangKi = thoiGianDangKi;
+    }
+
     public SinhviendangkihocphanPK getSinhviendangkihocphanPK()
     {
         return   sinhviendangkihocphanPK;
@@ -70,4 +45,13 @@ public class Sinhviendangkihocphan {
     public void setSinhviendangkihocphanPK(SinhviendangkihocphanPK sinhviendangkihocphanPK) {
         this.sinhviendangkihocphanPK = sinhviendangkihocphanPK;
     }
+
+    public Sinhvien getSinhVien() {
+        return sinhVien;
+    }
+    public void setSinhVien(Sinhvien sinhVien) {
+        this.sinhVien = sinhVien;
+    }
+
+
 }

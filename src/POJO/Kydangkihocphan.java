@@ -10,7 +10,7 @@ public class Kydangkihocphan {
     private String idKyDangKiHocPhan;
     private Date ngayBatDau;
     private Date ngayKetThuc;
-    private List<Lopdangkihocphan> dsLopDangKiHocPhan;
+    private List<Lopdangkihocphan> danhSachHocPhan;
     private Hocki hocKi;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="idHocKi",referencedColumnName = "idHocKi")
@@ -47,11 +47,11 @@ public class Kydangkihocphan {
         this.ngayKetThuc = ngayKetThuc;
     }
     @OneToMany(targetEntity = Lopdangkihocphan.class,fetch = FetchType.LAZY,mappedBy = "kyDangKiHocPhan")
-    public List<Lopdangkihocphan> getDsLopDangKiHocPhan() {
-        return dsLopDangKiHocPhan;
+    public List<Lopdangkihocphan> getDanhSachHocPhan() {
+        return danhSachHocPhan;
     }
-    public void setDsLopDangKiHocPhan(List<Lopdangkihocphan> dsLopDangKiHocPhan) {
-        this.dsLopDangKiHocPhan = dsLopDangKiHocPhan;
+    public void setDanhSachHocPhan(List<Lopdangkihocphan> dsLopDangKiHocPhan) {
+        this.danhSachHocPhan = dsLopDangKiHocPhan;
     }
     @Override
     public boolean equals(Object o) {

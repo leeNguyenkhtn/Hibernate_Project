@@ -12,7 +12,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class GUI_GiaoVu_LopHoc extends JPanel{
-    private JButton themDongMoiButton;
+    private JButton taiLaiButton;
     private JTextField tenLopHocTF;
     private JButton themButton;
     private JButton xoaButton;
@@ -60,10 +60,9 @@ public class GUI_GiaoVu_LopHoc extends JPanel{
                 int i = lopHocTable.getSelectedRow();
                 String idLopHoc = BUS_LopHoc.danhSachLopHoc.get(i).getIdLopHoc();
                 GUI_GiaoVu_LopHoc_Dialog_SinhVien dialog_sinhVien = new GUI_GiaoVu_LopHoc_Dialog_SinhVien(idLopHoc);
-
             }
         });
-        themDongMoiButton.addActionListener(new ActionListener() {
+        taiLaiButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setEmpty();

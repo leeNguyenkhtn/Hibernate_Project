@@ -16,7 +16,7 @@ public class Sinhvien {
     private String diaChi;
     private String soDienThoai;
     private Taikhoan taiKhoan;
-    private List<Lopdangkihocphan> danhSachDangKiHocPhan;
+    private List<Sinhviendangkihocphan> danhSachDangKiHocPhan;
     private Lophoc lopHoc;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "LopHoc_idLopHoc")
@@ -98,25 +98,23 @@ public class Sinhvien {
         this.soDienThoai = soDienThoai;
     }
 
-    public void setTaiKhoan(Taikhoan taikhoanByIdSinhVien) {
-        this.taiKhoan = taikhoanByIdSinhVien;
-    }
-    @OneToOne
+
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idSinhVien", referencedColumnName = "idTaiKhoan", nullable = false)
     public  Taikhoan getTaiKhoan(){
         return taiKhoan;
     }
-
-    @ManyToMany(cascade = {CascadeType.ALL},fetch = FetchType.LAZY)
-    @JoinTable(name="Sinhviendangkihocphan",
-                joinColumns = {@JoinColumn(name = "sinhvien_idSinhVien",referencedColumnName = "idSinhVien")},
-                inverseJoinColumns = {@JoinColumn(name = "LopDangKiHocPhan_idLopDangKiHocPhan",referencedColumnName = "idLopDangKiHocPhan")})
-    public List<Lopdangkihocphan> getDanhSachDangKiHocPhan() {
-        return danhSachDangKiHocPhan;
+    public void setTaiKhoan(Taikhoan taikhoanByIdSinhVien) {
+        this.taiKhoan = taikhoanByIdSinhVien;
     }
 
-    public void setDanhSachDangKiHocPhan(List<Lopdangkihocphan> danhSachDangKiHopPhan) {
-        this.danhSachDangKiHocPhan = danhSachDangKiHopPhan;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "sinhVien")
+    public List<Sinhviendangkihocphan> getDanhSachDangKiHocPhan() {
+        return danhSachDangKiHocPhan;
+    }
+    public void setDanhSachDangKiHocPhan(List<Sinhviendangkihocphan> danhSachDangKiHocPhan) {
+        this.danhSachDangKiHocPhan = danhSachDangKiHocPhan;
     }
     @Override
     public boolean equals(Object o) {

@@ -2,6 +2,10 @@ package GUI;
 
 import javax.swing.*;
 import BUS.BUS_TaiKhoan;
+import GUI_SinhVien_PACKAGE.GUI_SinhVien;
+
+import java.awt.*;
+import java.util.Enumeration;
 
 public class GUI_Login extends JFrame{
     private JPasswordField passwordField;
@@ -12,11 +16,12 @@ public class GUI_Login extends JFrame{
     private JPanel loginPanel;
     private String idSinhVien = null;
     private String idGiaoVu = null;
+    final static int size = 14;
     public GUI_Login()
     {
         add(loginPanel);
         setTitle("QLDKHP");
-        setSize(300,200);
+        setSize(450,350);
         login_btn.addActionListener(e -> {
             String matKhau = new String(passwordField.getPassword());
             String tenDangNhap = usernameTextField.getText();
@@ -39,8 +44,16 @@ public class GUI_Login extends JFrame{
         });
 
     }
-
+    private static void setUIFont(javax.swing.plaf.FontUIResource f) {
+        Enumeration<Object> keys = UIManager.getDefaults().keys();
+        while (keys.hasMoreElements()) {
+            Object key = keys.nextElement();
+            Object value = UIManager.get(key);
+            if (value instanceof javax.swing.plaf.FontUIResource) UIManager.put(key, f);
+        }
+    }
     public static void main(String[] args) throws UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        setUIFont(new javax.swing.plaf.FontUIResource("Arial", Font.PLAIN, size));
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         GUI_Login login = new GUI_Login();
         SwingUtilities.invokeLater(() -> login.setVisible(true));

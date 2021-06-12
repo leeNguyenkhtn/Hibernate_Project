@@ -92,6 +92,7 @@ public class DAO_HocKi {
             TypedQuery<Hocki> query = session.createQuery("select hk from Hocki hk where hk.trangThai=1",Hocki.class);
             EntityGraph<Hocki> entityGraph = session.createEntityGraph(Hocki.class);
             entityGraph.addSubgraph("dsKyDangKiHocPhan");
+            query.setHint("javax.persistence.fetchgraph",entityGraph);
             hocki = query.getSingleResult();
             tx.commit();
         }
@@ -126,4 +127,5 @@ public class DAO_HocKi {
         }
         return state;
     }
+
 }

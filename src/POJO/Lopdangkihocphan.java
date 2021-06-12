@@ -15,7 +15,7 @@ public class Lopdangkihocphan {
     private int soLuongDaDangKy;
     private Monhoc monHoc;
     private Lophoc lopHoc;
-    private List<Sinhvien> danhSachSinhVienTrongLop;
+    private List<Sinhviendangkihocphan> danhSachSinhVienDangKi;
     private Kydangkihocphan kyDangKiHocPhan;
     @Id
     @Column(name = "idLopDangKiHocPhan", nullable = false, length = 12)
@@ -87,6 +87,14 @@ public class Lopdangkihocphan {
         this.soLuongDaDangKy = soLuongDaDangKy;
     }
 
+    @OneToMany(targetEntity = Sinhviendangkihocphan.class, mappedBy = "hocPhan",cascade = CascadeType.ALL)
+    public List<Sinhviendangkihocphan> getDanhSachSinhVienDangKi() {
+        return danhSachSinhVienDangKi;
+    }
+    public void setDanhSachSinhVienDangKi(List<Sinhviendangkihocphan> danhSachSinhVienDangKi) {
+        this.danhSachSinhVienDangKi = danhSachSinhVienDangKi;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -99,14 +107,7 @@ public class Lopdangkihocphan {
         return Objects.hash(idLopDangKiHocPhan, giaoVienLiThuyet, tenPhongHoc, buoiHoc, caHoc, siSo, soLuongDaDangKy);
     }
 
-    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "danhSachDangKiHocPhan")
-    public List<Sinhvien> getDanhSachSinhVienTrongLop() {
-        return danhSachSinhVienTrongLop;
-    }
-    public void setDanhSachSinhVienTrongLop(List<Sinhvien> danhSachSinhVienTrongLop) {
-        this.danhSachSinhVienTrongLop = danhSachSinhVienTrongLop;
-    }
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="MonHoc_idMonHoc",referencedColumnName = "idMonHoc")
     public Monhoc getMonHoc(){ return monHoc;}
     public void setMonHoc(Monhoc idMonHoc){

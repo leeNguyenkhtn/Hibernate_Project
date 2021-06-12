@@ -56,7 +56,7 @@ public class DAO_LopHoc {
         }
         return dsLopHoc;
     }
-    public static Lophoc findLopHocByTenLopHoc(String tenLopHoc)
+    /*public static Lophoc findLopHocByTenLopHoc(String tenLopHoc)
     {
         Lophoc result = null;
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -76,6 +76,26 @@ public class DAO_LopHoc {
             session.close();
         }
         return result;
+    }*/
+    public static Lophoc getLopHocById(String idLopHoc)
+    {
+        Lophoc lophoc = null;
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session= sessionFactory.getCurrentSession();
+        Transaction tx = session.beginTransaction();
+        try
+        {
+            lophoc = session.get(Lophoc.class,idLopHoc);
+            tx.commit();
+        }
+        catch(Exception e)
+        {
+            tx.rollback();
+        }
+        finally {
+            session.close();
+        }
+        return lophoc;
     }
     public static List<Sinhvien> getListSinhVien(String idLopHoc)
     {
@@ -122,5 +142,13 @@ public class DAO_LopHoc {
             session.close();
         }
         return state;
+    }
+    public static void main(String[] args)
+    {
+        List<Sinhvien> ds = getListSinhVien("lh");
+        for(Sinhvien sv:ds)
+        {
+            System.out.println(sv.getHoVaTen());
+        }
     }
 }

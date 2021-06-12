@@ -6,6 +6,7 @@ import POJO.Monhoc;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -20,7 +21,7 @@ public class GUI_GiaoVu_MonHoc extends JPanel {
     private JButton themButton;
     private JButton xoaButton;
     private JButton suaButton;
-    private JButton themDongMoiButton;
+    private JButton taiLaiButton;
     DefaultTableModel model = new DefaultTableModel();
     final int rowHeight = 25;
     public GUI_GiaoVu_MonHoc() {
@@ -31,6 +32,14 @@ public class GUI_GiaoVu_MonHoc extends JPanel {
         model.setColumnIdentifiers(col);
         monHocTable.setModel(model);
         monHocTable.setRowHeight(rowHeight);
+        int[] colWidth = {90,250,70};
+        int i = 0;
+        for(int width:colWidth)
+        {
+            TableColumn column = monHocTable.getColumnModel().getColumn(i++);
+            column.setPreferredWidth(width);
+        }
+        //update table
         updateTableRow();
         //su kien click vao mot row
         monHocTable.addMouseListener(new MouseAdapter() {
@@ -111,7 +120,7 @@ public class GUI_GiaoVu_MonHoc extends JPanel {
             }
         });
         //them dong moi
-        themDongMoiButton.addActionListener(new ActionListener() {
+        taiLaiButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setEmpty();

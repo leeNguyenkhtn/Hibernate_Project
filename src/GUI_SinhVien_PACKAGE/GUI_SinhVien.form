@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="GUI.GUI_SinhVien">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="GUI_SinhVien_PACKAGE.GUI_SinhVien">
   <grid id="27dc6" binding="sinhVienPanel" layout-manager="GridBagLayout">
     <constraints>
       <xy x="20" y="20" width="500" height="415"/>
@@ -43,7 +43,7 @@
           <text value="Doi mat khau"/>
         </properties>
       </component>
-      <grid id="b8692" binding="noiDungPanel" layout-manager="CardLayout" hgap="10" vgap="0">
+      <grid id="b8692" binding="sinhVienCardLayout" layout-manager="CardLayout" hgap="10" vgap="0">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="5" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="14.0"/>
@@ -51,30 +51,6 @@
         <properties/>
         <border type="none"/>
         <children>
-          <grid id="c7a13" binding="dangKyPanel" layout-manager="GridBagLayout">
-            <constraints>
-              <card name="Card2"/>
-            </constraints>
-            <properties/>
-            <border type="none"/>
-            <children/>
-          </grid>
-          <grid id="a66c1" binding="ketQuaPanel" layout-manager="GridBagLayout">
-            <constraints>
-              <card name="Card3"/>
-            </constraints>
-            <properties/>
-            <border type="none"/>
-            <children/>
-          </grid>
-          <grid id="e36e5" binding="doiMatKhauPanel" layout-manager="GridBagLayout">
-            <constraints>
-              <card name="Card4"/>
-            </constraints>
-            <properties/>
-            <border type="none"/>
-            <children/>
-          </grid>
           <grid id="93540" binding="thongTinPanel" layout-manager="GridBagLayout">
             <constraints>
               <card name="thongTinCard"/>
@@ -138,7 +114,7 @@
               </component>
               <component id="29745" class="javax.swing.JButton" binding="thayDoiThongTinhButton">
                 <constraints>
-                  <grid row="7" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="6" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                   <gridbag weightx="0.0" weighty="2.0"/>
                 </constraints>
                 <properties>
@@ -221,24 +197,6 @@
                 </constraints>
                 <properties>
                   <enabled value="false"/>
-                </properties>
-              </component>
-              <component id="417fb" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="0.0" weighty="1.0"/>
-                </constraints>
-                <properties>
-                  <text value="Lop"/>
-                </properties>
-              </component>
-              <component id="265c4" class="javax.swing.JLabel" binding="lopLabel">
-                <constraints>
-                  <grid row="6" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="Label"/>
                 </properties>
               </component>
             </children>

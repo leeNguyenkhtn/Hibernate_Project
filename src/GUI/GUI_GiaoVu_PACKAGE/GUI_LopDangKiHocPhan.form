@@ -1,30 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="GUI.GUI_GiaoVu_PACKAGE.GUI_LopDangKiHocPhan">
-  <grid id="27dc6" binding="lopDangKiHocPhanPanel" layout-manager="GridBagLayout">
+  <grid id="27dc6" binding="lopDangKiHocPhanPanel" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
       <xy x="20" y="20" width="500" height="415"/>
     </constraints>
     <properties/>
     <border type="none"/>
     <children>
-      <grid id="66e3d" layout-manager="BorderLayout" hgap="0" vgap="0">
+      <grid id="66e3d" binding="BorderPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="1.0" weighty="10.0"/>
+          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="900" height="450"/>
+          </grid>
         </constraints>
         <properties/>
         <border type="none"/>
         <children>
-          <component id="d74d2" class="javax.swing.JTable" binding="lopDangKiHocPhanTable">
-            <constraints border-constraint="Center"/>
+          <scrollpane id="940e8">
+            <constraints border-constraint="North"/>
             <properties/>
-          </component>
+            <border type="none"/>
+            <children>
+              <component id="d74d2" class="javax.swing.JTable" binding="lopDangKiHocPhanTable">
+                <constraints/>
+                <properties/>
+              </component>
+            </children>
+          </scrollpane>
         </children>
       </grid>
       <grid id="49b5e" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="4" fill="2" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="1.0" weighty="0.5"/>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="4" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="none"/>
@@ -33,7 +41,7 @@
             <constraints/>
             <properties>
               <horizontalAlignment value="0"/>
-              <text value="Them"/>
+              <text value="Them HP"/>
             </properties>
           </component>
           <component id="f3bae" class="javax.swing.JButton" binding="xoaButton" default-binding="true">
@@ -56,6 +64,16 @@
           </component>
         </children>
       </grid>
+      <component id="e4935" class="javax.swing.JButton" binding="taiLaiButton" default-binding="true">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="60" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <text value="Tai lai"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>

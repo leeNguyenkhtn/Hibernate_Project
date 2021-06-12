@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="GUI.GUI_GiaoVu_PACKAGE.GUI_KyDangKiHocPhan">
+  <grid id="27dc6" binding="kyDangKiHocPhanPanel" layout-manager="GridLayoutManager" row-count="3" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="51ff9" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <scrollpane id="ce901">
+            <constraints border-constraint="Center"/>
+            <properties>
+              <preferredSize width="500" height="400"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="6eff6" class="javax.swing.JTable" binding="kyDangKiHocPhanTable">
+                <constraints/>
+                <properties/>
+              </component>
+            </children>
+          </scrollpane>
+        </children>
+      </grid>
+      <component id="6b1da" class="javax.swing.JButton" binding="taiLaiButton" default-binding="true">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Tai lai"/>
+        </properties>
+      </component>
+      <grid id="f7c82" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="bc8f7" class="javax.swing.JLabel">
+            <constraints/>
+            <properties>
+              <text value="Ngay bat dau"/>
+            </properties>
+          </component>
+          <component id="d41b0" class="javax.swing.JTextField" binding="ngayBatDauTF">
+            <constraints/>
+            <properties>
+              <minimumSize width="39" height="30"/>
+              <preferredSize width="40" height="30"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="75e99" class="javax.swing.JLabel">
+            <constraints/>
+            <properties>
+              <text value="Thang"/>
+            </properties>
+          </component>
+          <component id="9c554" class="javax.swing.JTextField" binding="thangBatDauTF">
+            <constraints/>
+            <properties>
+              <minimumSize width="39" height="30"/>
+              <preferredSize width="40" height="30"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="f75df" class="javax.swing.JLabel">
+            <constraints/>
+            <properties>
+              <text value="Nam"/>
+            </properties>
+          </component>
+          <component id="4bd0e" class="javax.swing.JTextField" binding="namBatDauTF">
+            <constraints/>
+            <properties>
+              <minimumSize width="39" height="30"/>
+              <preferredSize width="40" height="30"/>
+              <text value=""/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="76418" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="f7179" class="javax.swing.JLabel">
+            <constraints/>
+            <properties>
+              <text value="Ngay ket thuc"/>
+            </properties>
+          </component>
+          <component id="b7f62" class="javax.swing.JTextField" binding="ngayKetThucTF">
+            <constraints/>
+            <properties>
+              <minimumSize width="39" height="30"/>
+              <preferredSize width="40" height="30"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="498fe" class="javax.swing.JLabel">
+            <constraints/>
+            <properties>
+              <text value="Thang"/>
+            </properties>
+          </component>
+          <component id="fe943" class="javax.swing.JTextField" binding="thangKetThucTF">
+            <constraints/>
+            <properties>
+              <minimumSize width="39" height="30"/>
+              <preferredSize width="40" height="30"/>
+            </properties>
+          </component>
+          <component id="925d1" class="javax.swing.JLabel">
+            <constraints/>
+            <properties>
+              <text value="Nam"/>
+            </properties>
+          </component>
+          <component id="28533" class="javax.swing.JTextField" binding="namKetThucTF">
+            <constraints/>
+            <properties>
+              <preferredSize width="40" height="30"/>
+              <text value=""/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="c9358" class="javax.swing.JButton" binding="themButton" default-binding="true">
+        <constraints>
+          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Them"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

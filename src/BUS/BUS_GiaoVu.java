@@ -9,6 +9,11 @@ import java.sql.Date;
 import java.util.List;
 
 public class BUS_GiaoVu {
+    public static List<Thongtingiaovu> danhSachGiaoVu = danhSachGiaoVu();
+    public static void capNhatDanhSachGiaoVu()
+    {
+        danhSachGiaoVu = danhSachGiaoVu();
+    }
     public static String themGiaoVu(String tenDangNhap, String matKhau, String hoVaTen, Date ngaySinh,
                                             String gioiTinh,String soDienThoai,String email)
     {
@@ -30,6 +35,7 @@ public class BUS_GiaoVu {
         giaoVu.setSoDienThoai(soDienThoai);
         if(DAO_Thongtingiaovu.creatRecord(giaoVu))
         {
+            capNhatDanhSachGiaoVu();
             return id;
         }
         else
@@ -47,7 +53,12 @@ public class BUS_GiaoVu {
         Thongtingiaovu giaoVu = dsGiaoVu.get(i);
         String id = giaoVu.getIdGiaoVu();
         DAO_Thongtingiaovu.deleteRecord(id);
-        return DAO_TaiKhoan.deleteRecord(id);
+        if(DAO_TaiKhoan.deleteRecord(id))
+        {
+            capNhatDanhSachGiaoVu();
+            return true;
+        }
+        return false;
     }
     public static boolean capNhatGiaoVu(int i, String hoVaTen,String ngaySinh,
                                         String gioiTinh, String soDienThoai,String email)
@@ -60,16 +71,25 @@ public class BUS_GiaoVu {
         thongTinMoi.setGioiTinh(gioiTinh);
         thongTinMoi.setSoDienThoai(soDienThoai);
         thongTinMoi.setEmail(email);
-        return DAO_Thongtingiaovu.updateRecord(thongTinMoi.getIdGiaoVu(),thongTinMoi);
-    }
-    public static String timIdBangTenDangNhap(String tenDangNhap)
-    {
-        Taikhoan taikhoan = DAO_TaiKhoan.findTaiKhoanByUserName(tenDangNhap);
-        if(taikhoan==null)
+        if(DAO_Thongtingiaovu.updateRecord(thongTinMoi.getIdGiaoVu(),thongTinMoi))
         {
-            return null;
+            capNhatDanhSachGiaoVu();
+            return true;
         }
-        return taikhoan.getIdTaiKhoan();
+        return false;
+    }
+    public static int timGiaoVuBangTenDangNhap(String tenDangNhap)
+    {
+        int i=0;
+        for(Thongtingiaovu giaovu:danhSachGiaoVu())
+        {
+            if(tenDangNhap.equals(giaovu.getTaiKhoan().getTenDangNhap()))
+            {
+                return i;
+            }
+            i++;
+        }
+        return -1;
     }
     public static int resetMatKhau(String tenDangNhap)
     {
@@ -78,7 +98,9 @@ public class BUS_GiaoVu {
         {
             return Code.TEN_DANG_NHAP_KHONG_TON_TAI;
         }
-        String matKhauCu = taikhoan.getMatKhau();
         return DAO_TaiKhoan.updatePassword(tenDangNhap,taikhoan.getMatKhau(),tenDangNhap);
+    }
+    public static void main(String[] args)
+    {
     }
 }

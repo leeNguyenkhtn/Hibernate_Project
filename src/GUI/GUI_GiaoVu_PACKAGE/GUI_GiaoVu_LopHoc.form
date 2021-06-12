@@ -47,12 +47,12 @@
           <text value="Them"/>
         </properties>
       </component>
-      <component id="8c24b" class="javax.swing.JButton" binding="themDongMoiButton">
+      <component id="8c24b" class="javax.swing.JButton" binding="taiLaiButton">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="+"/>
+          <text value="Tai lai"/>
         </properties>
       </component>
       <component id="dd2a7" class="javax.swing.JButton" binding="xoaButton" default-binding="true">

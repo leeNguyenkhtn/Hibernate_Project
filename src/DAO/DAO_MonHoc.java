@@ -51,6 +51,26 @@ public class DAO_MonHoc {
         }
         return dsMonHoc;
     }
+    public static Monhoc getMonHocById(String id)
+    {
+        Monhoc monhoc = null;
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session= sessionFactory.getCurrentSession();
+        Transaction tx = session.beginTransaction();
+        try
+        {
+            monhoc = session.get(Monhoc.class,id);
+            tx.commit();
+        }
+        catch (Exception e)
+        {
+            tx.rollback();
+        }
+        finally {
+            session.close();
+        }
+        return monhoc;
+    }
     public static int UpdateRecord(String id, Monhoc monHocMoi)
     {
         int state = Code.THANH_CONG;
@@ -69,7 +89,6 @@ public class DAO_MonHoc {
         catch (Exception e)
         {
             state =Code.THAT_BAI;
-            System.err.println(e);
             tx.rollback();
         }
         finally {
@@ -99,5 +118,9 @@ public class DAO_MonHoc {
             session.close();
         }
         return state;
+    }
+    public static void main(String[] args)
+    {
+        System.out.println(getMonHocById("mh").getTenMonHoc());
     }
 }

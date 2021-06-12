@@ -1,42 +1,40 @@
 package POJO;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
+
 @Embeddable
 public class SinhviendangkihocphanPK implements Serializable {
-    private String sinhvienIdSinhVien;
-    private String lopDangKiHocPhanIdLopDangKiHopPhan;
+    private String idSinhVien;
+    private String idHocPhan;
 
-    public String getSinhvienIdSinhVien() {
-        return sinhvienIdSinhVien;
+    public String getIdSinhVien() {
+        return idSinhVien;
     }
 
-    public void setSinhvienIdSinhVien(String sinhvienIdSinhVien) {
-        this.sinhvienIdSinhVien = sinhvienIdSinhVien;
+    public void setIdSinhVien(String idSinhVien) {
+        this.idSinhVien = idSinhVien;
     }
 
-    public String getLopDangKiHocPhanIdLopDangKiHopPhan() {
-        return lopDangKiHocPhanIdLopDangKiHopPhan;
+    public String getIdHocPhan() {
+        return idHocPhan;
     }
 
-    public void setLopDangKiHocPhanIdLopDangKiHopPhan(String lopDangKiHocPhanIdLopDangKiHopPhan) {
-        this.lopDangKiHocPhanIdLopDangKiHopPhan = lopDangKiHocPhanIdLopDangKiHopPhan;
+    public void setIdHocPhan(String idHocPhan) {
+        this.idHocPhan = idHocPhan;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof SinhviendangkihocphanPK)) return false;
         SinhviendangkihocphanPK that = (SinhviendangkihocphanPK) o;
-        return Objects.equals(sinhvienIdSinhVien, that.sinhvienIdSinhVien) && Objects.equals(lopDangKiHocPhanIdLopDangKiHopPhan, that.lopDangKiHocPhanIdLopDangKiHopPhan);
+        return Objects.equals(getIdSinhVien(), that.getIdSinhVien()) && Objects.equals(getIdHocPhan(), that.getIdHocPhan());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(sinhvienIdSinhVien, lopDangKiHocPhanIdLopDangKiHopPhan);
+        return Objects.hash(getIdSinhVien(), getIdHocPhan());
     }
 }
